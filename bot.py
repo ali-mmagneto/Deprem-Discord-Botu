@@ -9,7 +9,7 @@ bot = Client(name='DepremBot', bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_
 url = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2023-01-01&endtime=2023-12-31&minmagnitude=4&limit=1&orderby=time&latitude=39&longitude=35&maxradiuskm=1000"
 
 @Client.on_message(filters.command('deprem'))
-async def deprem(bot, message):
+async def deprembilgi(bot, message):
     try:
         response = requests.get(url)
         data = response.json()
