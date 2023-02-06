@@ -35,7 +35,7 @@ async def deprembilgi(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
-@Bot.on_message(filters.command('eczane')
+@Bot.on_message(filters.command('eczane'))
 async def eczanebilgi(bot, message):
     istek = requests.get(eczane)
     veri = response.json()
