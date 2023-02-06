@@ -44,7 +44,7 @@ async def eczanebilgi(bot, message):
     elatitude = f"{ebilgi['latitude']}"
     elongitude = f"{ebilgi['longitude']}"
     adresurl = 'https://maps.google.com/maps?q=' + elatitude + ',' + elongitude
-    text = f"Nöbetçi Eczane: {ebilgi['EczaneAdi']}\n\nTelefon Numarası: {ebilgi['Telefon']}\n\n@TrDepremBot" 
+    text = f"Nöbetçi Eczane: ⚕ {ebilgi['EczaneAdi']}\n\nTelefon Numarası: ☎️ {ebilgi['Telefon']}\n\n@TrDepremBot" 
     await bot.send_location(
         chat_id=message.chat.id,
         latitude=float(elatitude), 
