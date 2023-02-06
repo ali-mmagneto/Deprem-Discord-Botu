@@ -11,7 +11,6 @@ url = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime
 @Client.on_message(filters.command('deprem'))
 async def deprem(bot, message):
     try:
-        print(f"Bot is ready, running on {bot.user_name}")
         response = requests.get(url)
         data = response.json()
         earthquake_info = data['features'][0]['properties']
