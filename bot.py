@@ -14,7 +14,7 @@ def get_earthquake_info():
     earthquake_info = data['features'][0]['properties']
     return earthquake_info
 
-@Client.on_message(filters.command('deprem')
+@Client.on_message(filters.command('deprem'))
 async def deprem(bot, message):
     print(f"Bot is ready, running on {client.user}")
     earthquake_info = get_earthquake_info()
