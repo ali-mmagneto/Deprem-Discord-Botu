@@ -30,9 +30,9 @@ async def deprembilgi(bot, message):
         with open('depremler.txt', 'w') as file:
             file.write(bilgi)
         with open('depremler.txt', 'rb') as doc:
-        await bot.send_document(
-            chat_id=message.chat.id, 
-            document=doc) 
+            await bot.send_document(
+                chat_id=message.chat.id, 
+                document=doc) 
     except Exception as e:
         print(e)
         await bot.send_message(
