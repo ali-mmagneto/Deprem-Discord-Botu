@@ -23,7 +23,7 @@ async def start(bot, message):
 @Bot.on_message(filters.command("deprem"))
 async def deprembilgi(bot, message):
     try:
-        result1 = urlopen(url).read().decode('utf-8')
+        result1 = requests.get(url)
         getData = json.loads(result1)
         bilgi = getData['result']
         await bot.send_message(
