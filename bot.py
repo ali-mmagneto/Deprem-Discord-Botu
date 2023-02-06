@@ -10,7 +10,7 @@ Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city=duzce&county=cumayeri&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
 
-url = "https://api.orhanaydogdu.com.tr/deprem/live.php"
+url = "https://api.orhanaydogdu.com.tr/deprem/live.php?limit=3"
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
@@ -28,7 +28,7 @@ async def deprembilgi(bot, message):
         bilgi = getData['result']
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=bilgi[:3]) 
+            text=bilgi) 
     except Exception as e:
         print(e)
         await bot.send_message(
