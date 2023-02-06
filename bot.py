@@ -27,7 +27,7 @@ async def deprembilgi(bot, message):
         result = urlopen(url).read().decode('utf-8')
         getData = json.loads(result)
         bilgi = getData['data']
-        text = bilgi.split('{' 6)
+        text = bilgi.split("{", 6)
         if len(bilgi) >= 300:
             for i in range(0, len(bilgi), 300):
                 await bot.send_message(
