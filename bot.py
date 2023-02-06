@@ -40,7 +40,13 @@ async def eczanebilgi(bot, message):
     istek = requests.get(eczane)
     veri = istek.json()
     ebilgi = veri['data'][0]
+    elatitude = f"{ebilgi['latitude']}"
+    elongitude = f"{ebilgi['longitude']}"
     text = f"Nöbetçi Eczane: {ebilgi['EczaneAdi']}\n\nTelefon Numarası: {ebilgi['Telefon']}\n\n@TrDepremBot" 
+    await bot.send_location(
+        chat_id=message.chat.id,
+        latitude=elatitude, 
+        longitude=elongitude)
     await bot.send_message(
         chat_id=message.chat.id,
         text=text)
