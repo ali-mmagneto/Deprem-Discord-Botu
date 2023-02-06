@@ -5,6 +5,8 @@ RUN mkdir /app
 RUN chmod 777 /app
 WORKDIR /app
 
+RUN apt -qq update
+
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow
 
