@@ -30,9 +30,9 @@ async def deprembilgi(bot, message):
         text = f"**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!: {bilgi}"
         if len(bilgi) >= 300:
             for i in range(0, len(bilgi), 300):
-            await bot.send_message(
-                chat_id=message.chat.id, 
-                text=bilgi[i:i+300]) 
+                await bot.send_message(
+                    chat_id=message.chat.id, 
+                    text=bilgi[i:i+300]) 
     except Exception as e:
         print(e)
         await bot.send_message(
