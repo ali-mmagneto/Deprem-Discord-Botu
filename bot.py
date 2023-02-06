@@ -1,5 +1,6 @@
 import requests
 import pyrogram
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram import Client, filters
 from config import BOT_TOKEN, API_HASH, API_ID
 import json
@@ -42,11 +43,13 @@ async def eczanebilgi(bot, message):
     ebilgi = veri['data'][0]
     elatitude = f"{ebilgi['latitude']}"
     elongitude = f"{ebilgi['longitude']}"
+    adresurl = 'https://maps.google.com/maps?q=' + elatitude + ',' + elongitude
     text = f"Nöbetçi Eczane: {ebilgi['EczaneAdi']}\n\nTelefon Numarası: {ebilgi['Telefon']}\n\n@TrDepremBot" 
     await bot.send_location(
         chat_id=message.chat.id,
         latitude=float(elatitude), 
-        longitude=float(elongitude)) 
+        longitude=float(elongitude),
+        reply_markup=[[InlineKeyboardButton(f"{ebilgi['EczaneAdi']} Git", url=adresurl),InlineKeyboardButton('Beni Oluşturan', url="https://t.me/mmagneto")]])
     await bot.send_message(
         chat_id=message.chat.id,
         text=text)
