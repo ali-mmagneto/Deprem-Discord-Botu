@@ -15,7 +15,7 @@ def get_earthquake_info():
     return earthquake_info
 
 @Client.on_message(filters.command('deprem')
-async def deprem(bot, message)
+async def deprem(bot, message):
     print(f"Bot is ready, running on {client.user}")
     earthquake_info = get_earthquake_info()
     message = f"**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
