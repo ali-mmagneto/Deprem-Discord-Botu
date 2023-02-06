@@ -27,12 +27,14 @@ async def deprembilgi(bot, message):
         result = urlopen(url).read().decode('utf-8')
         getData = json.loads(result)
         bilgi = getData['data']
-        text = bilgi.split("{", 6)
+        print(bilgi)
+        print(len(bilgi))
+        c = len(bilgi)
         if len(bilgi) >= 300:
             for i in range(0, len(bilgi), 300):
                 await bot.send_message(
                     chat_id=message.chat.id, 
-                    text=text) 
+                    text=c) 
     except Exception as e:
         print(e)
         await bot.send_message(
