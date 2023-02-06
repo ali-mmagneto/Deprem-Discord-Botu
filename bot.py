@@ -16,11 +16,17 @@ def get_earthquake_info(bot, message):
 
 @Client.on_message(filters.command('deprem'))
 async def deprem(bot, message):
-    print(f"Bot is ready, running on {client.user}")
-    earthquake_info = get_earthquake_info(bot, message)
-    message = f"**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
-    await bot.send_message(
-        chat_id=message.chat.id, 
-        text=message) 
+    try:
+        print(f"Bot is ready, running on {client.user}")
+        earthquake_info = get_earthquake_info(bot, message)
+        message = f"**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
+        await bot.send_message(
+            chat_id=message.chat.id, 
+            text=message) 
+    except Exception as e:
+        print(e)
+        await bot.send_message(
+            chat_id=message.chat.id,
+            text=f"`{e}`")
 
 bot.run()
