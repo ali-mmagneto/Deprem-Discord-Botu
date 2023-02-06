@@ -6,6 +6,7 @@ import json
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
+eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city=duzce&county=cumayeri&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
 
@@ -34,4 +35,13 @@ async def deprembilgi(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
+@Bot.on_message(filters.command('eczane')
+async def eczanebilgi(bot, message):
+    istek = requests.get(eczane)
+    veri = response.json()
+    ebilgi = data['data'][0]
+    text = f"Nöbetçi Eczane: {ebilgi['EczaneAdi']}\n\nTelefon Numarası: {ebilgi['Telefon']}\n\n@TrDepremBot" 
+    await bot.send_message(
+        chat_id=message.chat.id,
+        text=text)
 Bot.run()
