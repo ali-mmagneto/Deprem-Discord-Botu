@@ -32,7 +32,7 @@ async def deprembilgi(bot, message):
             for i in range(0, len(bilgi), 300):
                 await bot.send_message(
                     chat_id=message.chat.id, 
-                    text=bilgi[i:i+300]) 
+                    text=bilgi[i:i+30]) 
     except Exception as e:
         print(e)
         await bot.send_message(
