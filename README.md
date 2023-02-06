@@ -2,4 +2,6 @@
 Türkiyedeki Depremleri Anlık Olarak USGS(https://earthquake.usgs.gov) ile Discord Botu Aracılığı 
 
 
-Preview:https://prnt.sc/dA21Nnv8o9ir
+Preview: https://telegra.ph/file/95742135e9b02f5986571.jpg
+
+Bu sadece bir fork
