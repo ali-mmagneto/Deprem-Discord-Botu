@@ -12,7 +12,7 @@ eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city=duzce&county=cumayeri&
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
 
-def listToString(s):
+def listToString(bilgi):
  
 
     # initialize an empty string
@@ -22,7 +22,7 @@ def listToString(s):
 
     # traverse in the string
 
-    for ele in s:
+    for ele in bilgi:
 
         str1 += ele
  
