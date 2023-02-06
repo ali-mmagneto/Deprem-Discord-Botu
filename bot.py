@@ -23,10 +23,10 @@ async def start(bot, message):
 @Bot.on_message(filters.command("deprem"))
 async def deprembilgi(bot, message):
     try:
-        response = requests.get(url)
-        data = response.json()
-        bilgi = data['data'][0]
-        text = f"**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: {bilgi['yer']}\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}"
+        result = urlopen(url).read().decode('utf-8')
+        getData = json.loads(result)
+        bilgi = getData['data']
+        text = f"**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!: {bilgi}"
         await bot.send_message(
             chat_id=message.chat.id, 
             text=text) 
