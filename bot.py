@@ -14,7 +14,7 @@ url = "https://hasanadiguzel.com.tr/api/sondepremler"
 async def start(bot, message):
     await bot.send_photo(
         chat_id=message.chat.id,
-        photo="https://telegra.ph/file/95742135e9b02f5986571.jpg",
+        photo="https://telegra.ph/file/8069ff4c3544d796c977a.jpg",
         caption="Komut - /deprem\nBeni Oluşturan: @mmagneto")
 
 
