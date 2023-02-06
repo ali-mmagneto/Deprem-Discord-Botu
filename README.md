@@ -6,4 +6,4 @@ Preview: https://telegra.ph/file/95742135e9b02f5986571.jpg
 
 Bu sadece bir fork
 
-Tg: t.me/mmagneto
+Tg: https://t.me/mmagneto
