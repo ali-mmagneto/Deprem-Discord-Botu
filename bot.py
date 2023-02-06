@@ -12,10 +12,7 @@ url = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime
 @Client.on_message(filters.command('deprem'))
 async def deprembilgi(bot, message):
     try:
-        response = requests.get(url)
-        data = json.loads(response.text)
-        earthquake_info = data['features'][0]['properties']
-        message = f"**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
+        message = "**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
         await bot.send_message(
             chat_id=message.chat.id, 
             text=message) 
