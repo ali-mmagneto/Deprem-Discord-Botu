@@ -24,7 +24,7 @@ async def start(bot, message):
 async def deprembilgi(bot, message):
     try:
         result1 = requests.get(url)
-        getData = json.loads(result1)
+        getData = json.load(result1)
         bilgi = getData['result']
         await bot.send_message(
             chat_id=message.chat.id, 
