@@ -9,7 +9,7 @@ bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 url = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2023-01-01&endtime=2023-12-31&minmagnitude=4&limit=1&orderby=time&latitude=39&longitude=35&maxradiuskm=1000"
 
-@Client.on_message(filters.command('deprem'))
+@Client.on_message(filters.command("deprem"))
 async def deprembilgi(bot, message):
     try:
         text = "**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
