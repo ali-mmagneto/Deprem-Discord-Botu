@@ -12,6 +12,24 @@ eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city=duzce&county=cumayeri&
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
 
+def listToString(s):
+ 
+
+    # initialize an empty string
+
+    str1 = ""
+ 
+
+    # traverse in the string
+
+    for ele in s:
+
+        str1 += ele
+ 
+
+    # return string
+
+    return str1
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
@@ -27,8 +45,9 @@ async def deprembilgi(bot, message):
         result = urlopen(url).read().decode('utf-8')
         getData = json.loads(result)
         bilgi = getData['data']
+        bilgi2 = await listToString(bilgi)
         with open('depremler.txt', 'w') as file:
-            file.write(bilgi)
+            file.write(bilgi2)
         with open('depremler.txt', 'rb') as doc:
             await bot.send_document(
                 chat_id=message.chat.id, 
