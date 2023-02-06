@@ -12,10 +12,10 @@ url = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime
 @Client.on_message(filters.command('deprem'))
 async def deprembilgi(bot, message):
     try:
-        message = "**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
+        text = "**DİKKAT! TÜRKİYEDE DEPREM!!!:**\nBüyüklük: {earthquake_info['mag']}\nLokasyon: {earthquake_info['place']}\nZaman: {earthquake_info['time']}\nDetaylı Bilgi: {earthquake_info['url']}"
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=message) 
+            text=text) 
     except Exception as e:
         print(e)
         await bot.send_message(
