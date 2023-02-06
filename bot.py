@@ -28,7 +28,7 @@ async def deprembilgi(bot, message):
         bilgi = getData['data']
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=bilgi[:3]) 
+            text=bilgi[:10]) 
     except Exception as e:
         print(e)
         await bot.send_message(
