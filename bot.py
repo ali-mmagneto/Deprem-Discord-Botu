@@ -27,7 +27,7 @@ async def deprembilgi(bot, message):
         result = urlopen(url).read().decode('utf-8')
         getData = json.loads(result)
         bilgi = getData['data']
-        await bot.send_text(
+        await bot.send_message(
             chat_id=message.chat.id, 
             text=bilgi) 
     except Exception as e:
