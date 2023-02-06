@@ -25,7 +25,7 @@ async def deprembilgi(bot, message):
     try:
         result1 = requests.get(url)
         getData = result1.json()
-        bilgi = getData['result']
+        bilgi = getData['result'][0]
         await bot.send_message(
             chat_id=message.chat.id, 
             text=bilgi) 
