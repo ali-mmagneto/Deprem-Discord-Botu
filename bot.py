@@ -49,7 +49,7 @@ async def eczanebilgi(bot, message):
         chat_id=message.chat.id,
         latitude=float(elatitude), 
         longitude=float(elongitude),
-        reply_markup=[[InlineKeyboardButton(f"{ebilgi['EczaneAdi']} Git", url=adresurl),InlineKeyboardButton('Beni Oluşturan', url="https://t.me/mmagneto")]])
+        reply_markup=[[InlineKeyboardButton(f"{ebilgi['EczaneAdi']} Git", url=adresurl),InlineKeyboardButton(f"Beni Oluşturan", url="https://t.me/mmagneto")]])
     await bot.send_message(
         chat_id=message.chat.id,
         text=text)
