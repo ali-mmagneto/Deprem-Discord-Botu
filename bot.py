@@ -65,7 +65,16 @@ async def deprembilgi(bot, message):
         bilgi = data['data'][0]
         bilgi1 = data['data'][1]
         bilgi2 = data['data'][2]
-        text = f"**TÜRKİYE'DE YAŞANAN SON 3 DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: {bilgi['yer']}\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}\n\nBüyüklük: {bilgi1['ml']}\nDerinlik: {bilgi1['derinlik_km']}\nLokasyon: {bilgi1['yer']}\nTarih: {bilgi1['tarih']}\nSaat: {bilgi1['saat']}\n\nBüyüklük: {bilgi2['ml']}\nDerinlik: {bilgi2['derinlik_km']}\nLokasyon: {bilgi2['yer']}\nTarih: {bilgi2['tarih']}\nSaat: {bilgi2['saat']}"
+        latitude1 = f"{bilgi['enlem_n']}"
+        longitude1 = f"{bilgi['boylam_e']}"
+        dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
+        latitude12 = f"{bilgi1['enlem_n']}"
+        longitude2 = f"{bilgi1['boylam_e']}"
+        dadresurl1 = 'https://maps.google.com/maps?q=' + latitude2 + ',' + longitude2
+        latitude3 = f"{bilgi2['enlem_n']}"
+        longitude3 = f"{bilgi2['boylam_e']}"
+        dadresurl2 = 'https://maps.google.com/maps?q=' + latitude3 + ',' + longitude3
+        text = f"**TÜRKİYE'DE YAŞANAN SON 3 DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: [{bilgi['yer']}](dadresurl)\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}\n\nBüyüklük: {bilgi1['ml']}\nDerinlik: {bilgi1['derinlik_km']}\nLokasyon: [{bilgi1['yer']}](dadresurl1)\nTarih: {bilgi1['tarih']}\nSaat: {bilgi1['saat']}\n\nBüyüklük: {bilgi2['ml']}\nDerinlik: {bilgi2['derinlik_km']}\nLokasyon: [{bilgi2['yer']}](dadresurl2)\nTarih: {bilgi2['tarih']}\nSaat: {bilgi2['saat']}"
         await bot.send_message(
             chat_id=message.chat.id, 
             text=text) 
