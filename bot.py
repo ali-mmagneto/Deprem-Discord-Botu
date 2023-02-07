@@ -61,4 +61,21 @@ async def eczanebilgi(bot, message):
     await bot.send_message(
         chat_id=message.chat.id,
         text=text)
-Bot.run()
+
+@Bot.on_message(filters.command("deprem5"))
+async def deprembilgi(bot, message):
+    try:
+        response = requests.get(url)
+        data = response.json()
+        bilgi = data['data'][0]
+        text = json.dumps(bilgi, sort_keys=True, indent=4)
+        await bot.send_message(
+            chat_id=message.chat.id, 
+            text=text[:5]) 
+    except Exception as e:
+        print(e)
+        await bot.send_message(
+            chat_id=message.chat.id,
+            text=f"`{e}`")
+
+Bot.run() 
