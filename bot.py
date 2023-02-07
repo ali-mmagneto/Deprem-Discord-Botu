@@ -37,7 +37,7 @@ async def deprembilgi(bot, message):
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"{bilgi['yer']} Git", url=dadresurl),InlineKeyboardButton(f"Beni Oluşturan", url="https://t.me/mmagneto")]])) 
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=text[:5]) 
+            text=text) 
     except Exception as e:
         print(e)
         await bot.send_message(
@@ -71,7 +71,7 @@ async def deprembilgi(bot, message):
         text = json.dumps(bilgi)
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=text) 
+            text=text[:5]) 
     except Exception as e:
         print(e)
         await bot.send_message(
