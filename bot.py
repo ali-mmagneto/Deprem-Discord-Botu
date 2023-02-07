@@ -65,10 +65,6 @@ async def eczanebilgi(bot, message):
 @Bot.on_message(filters.command("deprem5"))
 async def deprembilgi(bot, message):
     try:
-        parameters = {
-            "lat": 40.71,
-            "lon": -74
-        }
         response = requests.get(url).text
         data = json.loads(response)
         bilgi = data['data'][0]
