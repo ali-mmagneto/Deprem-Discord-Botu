@@ -10,7 +10,7 @@ Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city=duzce&county=cumayeri&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
 
-url = "https://api.orhanaydogdu.com.tr/deprem/live.php?limit=3"
+url = "https://hasanadiguzel.com.tr/api/sondepremler"
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
@@ -23,12 +23,19 @@ async def start(bot, message):
 @Bot.on_message(filters.command("deprem"))
 async def deprembilgi(bot, message):
     try:
-        result1 = requests.get(url)
-        getData = result1.json()
-        bilgi = getData['result'][0]
+        response = requests.get(url)
+        data = response.json()
+        bilgi = data['data'][0]
+        latitude1 = f"{bilgi['enlem_n']}"
+        longitude1 = f"{bilgi['boylam_e']}"
+        text = f"**TÜRKİYE'DE YAŞANAN SON DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: {bilgi['yer']}\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}"
+        await bot.send_location(
+            chat_id=message.chat.id,
+            latidute=float(latidute1),
+            longitude=float(longitude1))
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=bilgi) 
+            text=text) 
     except Exception as e:
         print(e)
         await bot.send_message(
