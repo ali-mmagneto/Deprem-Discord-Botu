@@ -5,10 +5,9 @@ from pyrogram import Client, filters
 from config import BOT_TOKEN, API_HASH, API_ID
 import json
 from urllib.request import urlopen
+from unidecode import unidecode
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
-
-eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city=duzce&county=cumayeri&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
 
@@ -39,23 +38,34 @@ async def deprembilgi(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
-@Bot.on_message(filters.command('eczane'))
+@Bot.on_message(filters.command('nobetcieczane'))
 async def eczanebilgi(bot, message):
-    istek = requests.get(eczane)
-    veri = istek.json()
-    ebilgi = veri['data'][0]
-    elatitude = f"{ebilgi['latitude']}"
-    elongitude = f"{ebilgi['longitude']}"
-    adresurl = 'https://maps.google.com/maps?q=' + elatitude + ',' + elongitude
-    text = f"Nöbetçi Eczane: ⚕ {ebilgi['EczaneAdi']}\n\nTelefon Numarası: ☎️ {ebilgi['Telefon']}\n\n@TrDepremBot" 
-    await bot.send_location(
-        chat_id=message.chat.id,
-        latitude=float(elatitude), 
-        longitude=float(elongitude),
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"{ebilgi['EczaneAdi']} Git", url=adresurl),InlineKeyboardButton(f"Beni Oluşturan", url="https://t.me/mmagneto")]]))
-    await bot.send_message(
-        chat_id=message.chat.id,
-        text=text)
+    if len(message.text) < 3:
+        await bot.send_message(
+            chat_id=message.chat.id,
+            text="`Hatalı Kullanım`")
+    else:
+        eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city="
+        api_key = "&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
+        yer = unidecode(message.text).upper().split()
+        il = yer[1]
+        ilce = yer[2]
+        eczane_url = eczane + il + '&county=' + ilce + api_key
+        istek = requests.get(eczane_url)
+        veri = istek.json()
+        ebilgi = veri['data'][0]
+        elatitude = f"{ebilgi['latitude']}"
+        elongitude = f"{ebilgi['longitude']}"
+        adresurl = 'https://maps.google.com/maps?q=' + elatitude + ',' + elongitude
+        text = f"Nöbetçi Eczane: ⚕ {ebilgi['EczaneAdi']}\n\nTelefon Numarası: ☎️ {ebilgi['Telefon']}\n\n@TrDepremBot" 
+        await bot.send_location(
+            chat_id=message.chat.id,
+            latitude=float(elatitude), 
+            longitude=float(elongitude),
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"{ebilgi['EczaneAdi']} Git", url=adresurl),InlineKeyboardButton(f"Beni Oluşturan", url="https://t.me/mmagneto")]]))
+        await bot.send_message(
+            chat_id=message.chat.id,
+            text=text)
 
 @Bot.on_message(filters.command("deprem3"))
 async def deprembilgi(bot, message):
