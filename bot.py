@@ -49,6 +49,7 @@ async def eczanebilgi(bot, message):
         il = yer[1]
         ilce = yer[2]
         eczane_url = f"https://www.nosyapi.com/apiv2/pharmacyLink?city={il}&county={ilce}&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
+        await bot.send_message(message.chat.id, f"{eczane_url}")
         istek = requests.get(eczane_url)
         veri = istek.json()
         ebilgi = veri['data'][0]
