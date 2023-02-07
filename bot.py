@@ -71,7 +71,7 @@ async def deprembilgi(bot, message):
         text = json.dumps(bilgi)
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=text[:5]) 
+            text=text[:300]) 
     except Exception as e:
         print(e)
         await bot.send_message(
