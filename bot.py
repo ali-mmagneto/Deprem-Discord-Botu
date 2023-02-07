@@ -105,9 +105,8 @@ async def hava(bot, message):
             hava_api = f"https://api.openweathermap.org/data/2.5/weather?appid=51018b60257b50207fc63de7c53af5e1&q={sehir}"
             istek = requests.get(hava_api)
             veri = istek.json()
-            bilgi = veri['coord']
-            derece = float({bilgi['temp']}) - 273
-            text = f"{sehir} için:\nHava Durumu: {bilgi['weather']}\nSıcaklık: {derece}"
+            derece = float({veri["main"]["temp"]}) - 273
+            text = f"{sehir} için:\nHava Durumu: {veri["weather"][0]["description"]}\nSıcaklık: {derece}"
             await bot.send_message(
                chat_id=message.chat.id,
                text=text)
