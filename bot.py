@@ -45,13 +45,10 @@ async def eczanebilgi(bot, message):
             chat_id=message.chat.id,
             text="`Hatalı Kullanım`")
     else:
-        eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city="
-        api_key = "&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
-        yer = unidecode(message.text).upper().split()
-        print(len(yer))
+        yer = json.loads(message.text)
         il = yer[1]
         ilce = yer[2]
-        eczane_url = eczane + il + '&county=' + ilce + api_key
+        eczane_url = f"https://www.nosyapi.com/apiv2/pharmacyLink?city={il}&county={ilce}&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
         istek = requests.get(eczane_url)
         veri = istek.json()
         ebilgi = veri['data'][0]
