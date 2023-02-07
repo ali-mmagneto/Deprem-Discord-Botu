@@ -69,8 +69,8 @@ async def deprembilgi(bot, message):
             "lat": 40.71,
             "lon": -74
         }
-        response = requests.get(url, params=parameters)
-        data = response.json()
+        response = requests.get(url).text
+        data = json.loads(response)
         bilgi = data['data'][0]
         await bot.send_message(
             chat_id=message.chat.id, 
