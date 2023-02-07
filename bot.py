@@ -45,7 +45,8 @@ async def eczanebilgi(bot, message):
             chat_id=message.chat.id,
             text="`Hatalı Kullanım`")
     else:
-        yer = json.loads(message.text)
+        tmp = unidecode(message.text).upper().split()
+        yer = json.loads(tmp)
         il = yer[1]
         ilce = yer[2]
         eczane_url = f"https://www.nosyapi.com/apiv2/pharmacyLink?city={il}&county={ilce}&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
