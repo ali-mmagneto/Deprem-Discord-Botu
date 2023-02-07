@@ -133,7 +133,7 @@ async def hava(bot, message):
                 icon="⛅"
             elif weather["icon"]=="13n" :
                 icon="🌨️" 
-            text = f"{sehir} için:\nHava Durumu: {weather['description']} {icon}\nSıcaklık: {derece}\nHissedilen Sıcaklık: {derece2}"
+            text = f"{sehir}.upper için:\n**Hava Durumu**: `{weather['description']}` {icon}\n**Sıcaklık**: `{derece}`\n**Hissedilen Sıcaklık**: `{derece2}`"
             await bot.send_message(
                chat_id=message.chat.id,
                text=text)
