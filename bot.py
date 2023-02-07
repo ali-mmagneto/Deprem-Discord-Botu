@@ -109,6 +109,10 @@ async def hava(bot, message):
             coord = havajson["coord"]
             weather = havajson["weather"][0]
             wind = havajson["wind"]
+            d1 = weather["temp"]
+            derece = d1 - 273
+            d2 = weather["feels_like"]
+            derece2 = d2 - 273
             icon="🤷‍♂️"
             if weather["icon"]=="11d":
                 icon="⛈"
@@ -128,7 +132,9 @@ async def hava(bot, message):
                 icon="☁"
             elif weather["icon"]=="04d" or weather["icon"]=="04n" :
                 icon="⛅"
-            text = f"{sehir} için:\nEmoji: {icon} Hava Durumu: {weather['description']}\nSıcaklık: "
+            elif weather["icon"]=="13n" :
+                icon="🌨️" 
+            text = f"{sehir} için:\nHava Durumu: {weather['description']} {icon}\nSıcaklık: {derece}\nHissedilen Sıcaklık: {derece2}"
             await bot.send_message(
                chat_id=message.chat.id,
                text=text)
