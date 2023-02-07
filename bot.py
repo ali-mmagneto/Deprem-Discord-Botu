@@ -68,7 +68,7 @@ async def deprembilgi(bot, message):
         latitude1 = f"{bilgi['enlem_n']}"
         longitude1 = f"{bilgi['boylam_e']}"
         dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
-        latitude12 = f"{bilgi1['enlem_n']}"
+        latitude2 = f"{bilgi1['enlem_n']}"
         longitude2 = f"{bilgi1['boylam_e']}"
         dadresurl1 = 'https://maps.google.com/maps?q=' + latitude2 + ',' + longitude2
         latitude3 = f"{bilgi2['enlem_n']}"
