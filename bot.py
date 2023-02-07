@@ -103,6 +103,7 @@ async def hava(bot, message):
         else:
             ev = unidecode(message.text).lower().split()
             sehir = ev[1]
+            sehir1 = sehir.upper()
             hava_api = f"https://api.openweathermap.org/data/2.5/weather?appid=51018b60257b50207fc63de7c53af5e1&q={sehir}"
             deger2 = urlopen(hava_api).read().decode("utf-8")
             havajson = json.loads(deger2)
@@ -133,7 +134,7 @@ async def hava(bot, message):
                 icon="⛅"
             elif weather["icon"]=="13n" :
                 icon="🌨️" 
-            text = f"{sehir}.upper için:\n**Hava Durumu**: `{weather['description']}` {icon}\n**Sıcaklık**: `{derece}`\n**Hissedilen Sıcaklık**: `{derece2}`"
+            text = f"{sehir1} için:\n**Hava Durumu**: `{weather['description']}` {icon}\n**Sıcaklık**: `{derece}`\n**Hissedilen Sıcaklık**: `{derece2}`"
             await bot.send_message(
                chat_id=message.chat.id,
                text=text)
