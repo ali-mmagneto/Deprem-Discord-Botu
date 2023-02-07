@@ -48,6 +48,7 @@ async def eczanebilgi(bot, message):
         eczane = "https://www.nosyapi.com/apiv2/pharmacyLink?city="
         api_key = "&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
         yer = unidecode(message.text).upper().split()
+        print(len(yer))
         il = yer[1]
         ilce = yer[2]
         eczane_url = eczane + il + '&county=' + ilce + api_key
