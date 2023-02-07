@@ -106,7 +106,7 @@ async def hava(bot, message):
             istek = requests.get(hava_api)
             veri = istek.json()
             bilgi = veri['coord'][0]
-            derece = {bilgi['temp']} - 273
+            derece = float({bilgi['temp']}) - 273
             text = f"{sehir} için:\nHava Durumu: {bilgi['weather']}\nSıcaklık: {derece}"
             await bot.send_message(
                chat_id=message.chat.id,
