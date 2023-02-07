@@ -108,7 +108,7 @@ async def hava(bot, message):
             havajson = json.loads(deger2)
             coord = havajson["coord"]
             weather = havajson["weather"][0]
-            genel = havajson["main"][0]
+            genel = havajson["main"]
             wind = havajson["wind"]
             if weather["icon"]=="11d":
                 icon="⛈"
