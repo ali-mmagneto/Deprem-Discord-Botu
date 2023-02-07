@@ -31,7 +31,7 @@ async def deprembilgi(bot, message):
         text = f"**TÜRKİYE'DE YAŞANAN SON DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: {bilgi['yer']}\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}"
         await bot.send_location(
             chat_id=message.chat.id,
-            latidute=float(latidute1),
+            latitute=float(latitute1),
             longitude=float(longitude1))
         await bot.send_message(
             chat_id=message.chat.id, 
