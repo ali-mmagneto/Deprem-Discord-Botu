@@ -108,10 +108,11 @@ async def hava(bot, message):
             havajson = json.loads(deger2)
             coord = havajson["coord"]
             weather = havajson["weather"][0]
+            genel = havajson["main"][0]
             wind = havajson["wind"]
-            d1 = weather["temp"]
+            d1 = genel["temp"]
             derece = d1 - 273
-            d2 = weather["feels_like"]
+            d2 = genel["feels_like"]
             derece2 = d2 - 273
             icon="🤷‍♂️"
             if weather["icon"]=="11d":
