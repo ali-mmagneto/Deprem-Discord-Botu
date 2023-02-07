@@ -62,14 +62,14 @@ async def eczanebilgi(bot, message):
         chat_id=message.chat.id,
         text=text)
 
-@Bot.on_message(filters.command("deprem5"))
+@Bot.on_message(filters.command("deprem3"))
 async def deprembilgi(bot, message):
     try:
         response = requests.get(url)
         data = response.json()
         bilgi = data['data'][0]
-        bilgi2 = data['data'][1]
-        bilgi3 = data['data'][2]
+        bilgi1 = data['data'][1]
+        bilgi2 = data['data'][2]
         text = f"**TÜRKİYE'DE YAŞANAN SON 3 DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: {bilgi['yer']}\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}\n\nBüyüklük: {bilgi1['ml']}\nDerinlik: {bilgi1['derinlik_km']}\nLokasyon: {bilgi1['yer']}\nTarih: {bilgi1['tarih']}\nSaat: {bilgi1['saat']}\n\nBüyüklük: {bilgi2['ml']}\nDerinlik: {bilgi2['derinlik_km']}\nLokasyon: {bilgi2['yer']}\nTarih: {bilgi2['tarih']}\nSaat: {bilgi2['saat']}"
         await bot.send_message(
             chat_id=message.chat.id, 
