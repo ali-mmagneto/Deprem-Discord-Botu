@@ -93,4 +93,24 @@ async def deprembilgi(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
+
+@Bot.on_message(filters.command('hava'))
+async def hava(bot, message):
+    try:
+        if len(message.text) < 2:
+            bot.send_message(message.chat.id, "Hatalı Kullanım")
+        else:
+            ev = unidecode(message.text).lower().split()
+            sehir = ev[1]
+            hava_api = f"https://api.openweathermap.org/data/2.5/weather?appid=51018b60257b50207fc63de7c53af5e1&q={sehir}"
+            istek = requests.get(hava_api)
+            veri = istek.json()
+            bilgi = veri['coord'][0]
+            derece = {bilgi['temp']} - 273
+            text = f"{sehir} için:\nHava Durumu: {bilgi['weather']}\nSıcaklık: {derece}"
+            await bot.send_message(
+               chat_id=message.chat.id,
+               text=text)
+    except Exception as e:
+        print(e)
 Bot.run() 
