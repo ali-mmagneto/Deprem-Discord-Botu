@@ -110,7 +110,7 @@ async def hava(bot, message):
             weather = havajson["weather"][0]
             genel = havajson["main"]
             wind = havajson["wind"]
-            icon="🌬️"
+            icon="🌨️"
             if weather["icon"]=="11d":
                 icon="⛈"
             elif weather["icon"]=="09d":
