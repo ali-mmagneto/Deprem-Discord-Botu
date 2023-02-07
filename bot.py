@@ -6,6 +6,7 @@ from config import BOT_TOKEN, API_HASH, API_ID
 import json
 from urllib.request import urlopen
 from unidecode import unidecode
+from urllib.request import urlopen
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -103,11 +104,31 @@ async def hava(bot, message):
             ev = unidecode(message.text).lower().split()
             sehir = ev[1]
             hava_api = f"https://api.openweathermap.org/data/2.5/weather?appid=51018b60257b50207fc63de7c53af5e1&q={sehir}"
-            response = requests.get(url)
-            data = response.json()
-            bilgi = data['coord']['weather'][0]
-            derece = {veri['temp']} - 273
-            text = f"{sehir} için:\nHava Durumu: {bilgi['weather']}\nSıcaklık: {derece}"
+            deger2 = urlopen(hava_api).read().decode("utf-8")
+            havajson = json.loads(deger2)
+            coord = havajson["coord"]
+            weather = havajson["weather"][0]
+            wind = havajson["wind"]
+            icon="🤷‍♂️"
+            if weather["icon"]=="11d":
+                icon="⛈"
+            elif weather["icon"]=="09d":
+                icon="☔"
+            elif weather["icon"]=="10d":
+                icon="🌦"
+            elif weather["icon"]=="13d":
+                icon="❆"
+            elif weather["icon"]=="50d":
+                icon="🌫"
+            elif weather["icon"]=="01d":
+                icon="🌞"
+            elif weather["icon"]=="01n":
+                icon="🌜"
+            elif weather["icon"]=="03d" or weather["icon"]=="03n" :
+                icon="☁"
+            elif weather["icon"]=="04d" or weather["icon"]=="04n" :
+                icon="⛅"
+            text = f"{sehir} için:\nEmoji: {icon} Hava Durumu: {weather['description']}\nSıcaklık: "
             await bot.send_message(
                chat_id=message.chat.id,
                text=text)
