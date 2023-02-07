@@ -32,7 +32,8 @@ async def deprembilgi(bot, message):
         await bot.send_location(
             chat_id=message.chat.id,
             latitute=float(latitute1),
-            longitude=float(longitude1))
+            longitude=float(longitude1),
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"{bilgi['yer']} Git", url=adresurl),InlineKeyboardButton(f"Beni Oluşturan", url="https://t.me/mmagneto")]])) 
         await bot.send_message(
             chat_id=message.chat.id, 
             text=text) 
