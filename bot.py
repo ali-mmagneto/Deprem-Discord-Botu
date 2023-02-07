@@ -26,10 +26,10 @@ async def deprembilgi(bot, message):
         response = requests.get(url)
         data = response.json()
         bilgi = data['data'][0]
-        text = f"**TÜRKİYE'DE YAŞANAN SON DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: [{bilgi['yer']}]({dadresurl})\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}"
         latitude1 = f"{bilgi['enlem_n']}"
         longitude1 = f"{bilgi['boylam_e']}"
         dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
+        text = f"**TÜRKİYE'DE YAŞANAN SON DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: [{bilgi['yer']}]({dadresurl})\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}"
         await bot.send_message(
             chat_id=message.chat.id, 
             text=text) 
