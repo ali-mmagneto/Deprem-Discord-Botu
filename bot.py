@@ -17,7 +17,7 @@ async def start(bot, message):
     await bot.send_photo(
         chat_id=message.chat.id,
         photo="https://telegra.ph/file/8069ff4c3544d796c977a.jpg",
-        caption="Komut 1 - /deprem Son Depremi Gösterir.\nKomut 2 - /deprem3 Son 3 Depremi Gösterir.\n\nBeni Oluşturan: @mmagneto")
+        caption="Komut 1 - /deprem Son Depremi Gösterir.\nKomut 2 - /deprem3 Son 3 Depremi Gösterir.\nKomut 3 - /hava girdiğin bölgenin güncel hava durumunu gösterir.\n\nBeni Oluşturan: @mmagneto")
 
 
 @Bot.on_message(filters.command("deprem"))
