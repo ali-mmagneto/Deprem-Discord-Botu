@@ -1,7 +1,8 @@
-# Deprem-Discord-Botu
+# Deprem-Telegram-Botu
 
 Preview: https://telegra.ph/file/95742135e9b02f5986571.jpg
 
-Bu sadece bir fork
+Tüm Kodlama https://t.me/mmagneto tarafından yapılmıştır.
+Büyük Depremler olmaması dileğiyle.. 
 
-Tg: https://t.me/mmagneto
+
