@@ -2,4 +2,4 @@ pyrogram
 requests
 TgCrypto
 unidecode
-Pillow~=8.3.1
+Pillow
