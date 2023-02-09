@@ -7,6 +7,9 @@ import json
 from urllib.request import urlopen
 from unidecode import unidecode
 from urllib.request import urlopen
+import random
+
+kuratrdıklarımızknl = "dddhhsjdheuehehehrjr"
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -141,4 +144,13 @@ async def hava(bot, message):
         await bot.send_message(
             chat_id=message.chat.id,
             text=f"`{e}`")
+
+@Client.on_message(filters.command('kurtardiklarimiz'))
+async def kurtardiklarimiz(bot, message):
+    m.id = random.randint(2, 92)
+    await bot.copy_message(
+        chat_id=chat_id,
+        from_chat_id=kuratrdıklarımızknl,
+        message_id=m.id)
+        
 Bot.run() 
