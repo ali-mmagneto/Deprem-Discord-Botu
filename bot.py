@@ -31,7 +31,9 @@ async def donusturucu(bot, message):
     name_format = f"Mickey_{user_id}_{message_id}"
     if message.reply_to_message.photo:
         message = await message.reply_text("`Dönüştürülüyor...`")
-        image = await message.reply_to_message.download(file_name=f"{name_format}.jpg")
+        image = await bot.download_media(
+                    message = message.reply_to_message,
+                    file_name=f"{name_format}.jpg")
         await message.edit("`Gönderiyorum...`")
         im = Image.open(image).convert("RGB")
         im.save(f"{name_format}.webp", "webp")
@@ -44,7 +46,9 @@ async def donusturucu(bot, message):
         await message.reply_text("Animasyonlu Sticker Desteklemiyorum!", quote=True)
     else:
         message = await message.reply_text("`Dönüştürülüyor...`")
-        sticker = await message.reply_to_message.download(file_name=f"{name_format}.webp")
+        sticker = await bot.download_media(
+                      message = message.reply_to_message,
+                      file_name=f"{name_format}.webp")
         await message.edit("`Gönderiyorum...`")
         im = Image.open(sticker).convert("RGB")
         im.save(f"{name_format}.jpg", "jpeg")
