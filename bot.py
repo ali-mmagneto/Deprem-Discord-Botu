@@ -148,7 +148,7 @@ async def hava(bot, message):
 async def kurtardiklarimiz(bot, message):
     message_id = random.randint(2, 92)
     await bot.copy_message(
-        chat_id=chat_id,
+        chat_id=message.chat.id,
         from_chat_id=dddhhsjdheuehehehrjr,
         message_id=message_id)
         
