@@ -145,7 +145,7 @@ async def hava(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
-@Client.on_message(filters.command('kurtardiklarimiz'))
+@Bot.on_message(filters.command('kurtardiklarimiz'))
 async def kurtardiklarimiz(bot, message):
     m.id = random.randint(2, 92)
     await bot.copy_message(
