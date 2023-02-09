@@ -53,7 +53,7 @@ async def donusturucu(bot, message):
         im = Image.open(sticker).convert("RGB")
         im.save(f"{name_format}.jpg", "jpeg")
         image = f"{name_format}.jpg"
-        await m.reply_text(image)
+        await m.reply_image(image)
         await m.delete()
         os.remove(image)
         os.remove(sticker) 
