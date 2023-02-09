@@ -147,9 +147,10 @@ async def hava(bot, message):
 @Bot.on_message(filters.command('kurtardiklarimiz'))
 async def kurtardiklarimiz(bot, message):
     message_id = random.randint(2, 92)
+    kurtardıklarımızknl = "dddhhsjdheuehehehrjr"
     await bot.copy_message(
         chat_id=message.chat.id,
-        from_chat_id=dddhhsjdheuehehehrjr,
+        from_chat_id=kurtardıklarımızknl,
         message_id=message_id)
         
 Bot.run() 
