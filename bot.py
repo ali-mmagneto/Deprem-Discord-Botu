@@ -30,31 +30,31 @@ async def donusturucu(bot, message):
     message_id = message.reply_to_message.id
     name_format = f"Mickey_{user_id}_{message_id}"
     if message.reply_to_message.photo:
-        message = await message.reply_text("`Dönüştürülüyor...`")
+        m = await message.reply_text("`Dönüştürülüyor...`")
         image = await bot.download_media(
                     message = message.reply_to_message,
                     file_name=f"{name_format}.jpg")
-        await message.edit("`Gönderiyorum...`")
+        await m.edit("`Gönderiyorum...`")
         im = Image.open(image).convert("RGB")
         im.save(f"{name_format}.webp", "webp")
         sticker = f"{name_format}.webp"
-        await message.reply_sticker(sticker)
-        await message.delete()
+        await m.reply_sticker(sticker)
+        await m.delete()
         os.remove(sticker)
         os.remove(image)
     elif message.reply_to_message.sticker.is_animated:
         await message.reply_text("Animasyonlu Sticker Desteklemiyorum!", quote=True)
     else:
-        message = await message.reply_text("`Dönüştürülüyor...`")
+        m = await message.reply_text("`Dönüştürülüyor...`")
         sticker = await bot.download_media(
                       message = message.reply_to_message,
                       file_name=f"{name_format}.webp")
-        await message.edit("`Gönderiyorum...`")
+        await m.edit("`Gönderiyorum...`")
         im = Image.open(sticker).convert("RGB")
         im.save(f"{name_format}.jpg", "jpeg")
         image = f"{name_format}.jpg"
-        await message.reply_text(image)
-        await message.delete()
+        await m.reply_text(image)
+        await m.delete()
         os.remove(image)
         os.remove(sticker) 
 
