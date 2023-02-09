@@ -8,7 +8,10 @@ from urllib.request import urlopen
 from unidecode import unidecode
 from urllib.request import urlopen
 import random
-
+import os
+from PIL import Image
+from pyrogram.types import Message
+from pyrogram import Client, filters
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -21,6 +24,35 @@ async def start(bot, message):
         photo="https://telegra.ph/file/8069ff4c3544d796c977a.jpg",
         caption="Komut 1 - /deprem Son Depremi Gösterir.\nKomut 2 - /deprem3 Son 3 Depremi Gösterir.\nKomut 3 - /hava girdiğin bölgenin güncel hava durumunu gösterir.\nKomut 4 - /kurtardiklarimiz azcikta olsa içimize umut serpicek görüntüler. Kaynak: @solcugazete, @bpthaber\n\nBeni Oluşturan: @mmagneto")
 
+@Bot.on_message(filters.command('donustur'))
+async def donusturucu(bot, message):
+    user_id = message.from_user.id
+    message_id = message.reply_to_message.id
+    name_format = f"Mickey_{user_id}_{message_id}"
+    if message.reply_to_message.photo:
+        message = await message.reply_text("`Dönüştürülüyor...`")
+        image = await message.reply_to_message.download(file_name=f"{name_format}.jpg")
+        await message.edit("`Gönderiyorum...`")
+        im = Image.open(image).convert("RGB")
+        im.save(f"{name_format}.webp", "webp")
+        sticker = f"{name_format}.webp"
+        await message.reply_sticker(sticker)
+        await message.delete()
+        os.remove(sticker)
+        os.remove(image)
+    elif message.reply_to_message.sticker.is_animated:
+        await message.reply_text("Animasyonlu Sticker Desteklemiyorum!", quote=True)
+    else:
+        message = await message.reply_text("`Dönüştürülüyor...`")
+        sticker = await message.reply_to_message.download(file_name=f"{name_format}.webp")
+        await message.edit("`Gönderiyorum...`")
+        im = Image.open(sticker).convert("RGB")
+        im.save(f"{name_format}.jpg", "jpeg")
+        image = f"{name_format}.jpg"
+        await message.reply_text(image)
+        await message.delete()
+        os.remove(image)
+        os.remove(sticker) 
 
 @Bot.on_message(filters.command("deprem"))
 async def deprembilgi(bot, message):
