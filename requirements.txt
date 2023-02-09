@@ -2,4 +2,3 @@ pyrogram
 requests
 TgCrypto
 unidecode
-PIL
