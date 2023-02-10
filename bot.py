@@ -192,6 +192,7 @@ async def kurtardiklarimiz(bot, message):
 @Bot.on_message(filters.command('rename'))
 async def rename(bot, message):
     text = message.text.split(" ", 1)
-    await message.reply_text(text)
+    file_name = text[1]
+    await message.reply_text(file_name)
         
 Bot.run() 
