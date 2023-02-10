@@ -204,7 +204,7 @@ async def rename(bot, message):
     os.rename(old_file_name,file_path)
     await bot.send_video(
         chat_id = message.chat.id,
-        video = file_path
+        video = file_path,
         caption = caption)
         
 Bot.run() 
