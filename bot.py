@@ -189,4 +189,22 @@ async def kurtardiklarimiz(bot, message):
         from_chat_id=kurtardıklarımızknl,
         message_id=message_id)
         
+@Bot.on_message(filters.command('telegraph'))
+async def telegraph_yukleme(bot, message):
+    try:
+        text = await bot.send_message("`Yüklüyorum...`")
+        try:
+            dizin = f"downloads/"
+            dosya = await message.reply_to_message.download(dizin)
+            await text.edit("`Dosyan indiriliyor..`")
+            yuklenen = upload_file(dosya) 
+            await text.edit_text(f"**🌐 | Telegraph Linki**:\n\n<code>https://telegra.ph{yuklenen[0]}</code>")     
+            os.remove(dosya) 
+        except Exception as e:
+            await text.edit(f"`{e}`")
+            os.remove(dosya) 
+            return         
+    except Exception:
+        pass
+
 Bot.run() 
