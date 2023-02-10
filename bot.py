@@ -1,6 +1,7 @@
 import requests
 import telegraph
 from telegraph import upload_file
+from telegraph import Telegraph
 import pyrogram
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram import Client, filters
@@ -16,6 +17,8 @@ from pyrogram.types import Message
 from pyrogram import Client, filters
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+telegraph = Telegraph()
+telegraph.create_account(short_name='deprembot')
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
 
