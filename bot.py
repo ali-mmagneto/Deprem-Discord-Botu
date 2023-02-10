@@ -206,7 +206,7 @@ async def telegraph_yukleme(bot, message):
                 await text.edit(f"**🌐 | Telegraph Linki**:\n\nhttps://telegra.ph{yuklenen[0]}")     
                 os.remove(dosya) 
             elif message.reply_to_message.text:
-                mes = message.reply_to_message.html.text
+                mes = message.reply_to_message.text
                 link = telegraph.create_page(
                     'Hey',
                     html_content=f"{mes}")
