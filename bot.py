@@ -202,7 +202,7 @@ async def telegraph_yukleme(bot, message):
             dosya = await message.reply_to_message.download(dizin)
             await text.edit("`Dosyan indiriliyor..`")
             yuklenen = upload_file(dosya) 
-            await text.edit(f"**🌐 | Telegraph Linki**:\n\n<code>https://telegra.ph{yuklenen[0]}</code>")     
+            await text.edit(f"**🌐 | Telegraph Linki**:\n\nhttps://telegra.ph{yuklenen[0]}")     
             os.remove(dosya) 
         except Exception as e:
             await text.edit(f"`{e}`")
