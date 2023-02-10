@@ -205,7 +205,7 @@ async def telegraph_yukleme(bot, message):
                 dosya = await message.reply_to_message.download(dizin)
                 await text.edit("`Dosyan indiriliyor..`")
                 yuklenen = telegraph.upload_file(dosya) 
-                await text.edit(f"{yuklenen[0]}")     
+                await text.edit(f"https://telegra.ph{yuklenen[0]}")     
                 os.remove(dosya) 
             elif message.reply_to_message.text:
                 mes = message.reply_to_message.text
