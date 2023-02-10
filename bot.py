@@ -198,12 +198,19 @@ async def telegraph_yukleme(bot, message):
                    chat_id=message.chat.id,
                    text="`Yüklüyorum...`")
         try:
-            dizin = f"downloads/"
-            dosya = await message.reply_to_message.download(dizin)
-            await text.edit("`Dosyan indiriliyor..`")
-            yuklenen = upload_file(dosya) 
-            await text.edit(f"**🌐 | Telegraph Linki**:\n\nhttps://telegra.ph{yuklenen[0]}")     
-            os.remove(dosya) 
+            if message.reply_to_message.video or message.reply_to_message.photo:
+                dizin = f"downloads/"
+                dosya = await message.reply_to_message.download(dizin)
+                await text.edit("`Dosyan indiriliyor..`")
+                yuklenen = upload_file(dosya) 
+                await text.edit(f"**🌐 | Telegraph Linki**:\n\nhttps://telegra.ph{yuklenen[0]}")     
+                os.remove(dosya) 
+            elif message.reply_to_message.text:
+                mes = message.reply_to_message.html.text
+                link = telegraph.create_page(
+                    'Hey',
+                    html_content=f"{mes}")
+                await text.edit(f"{link['url']}")
         except Exception as e:
             await text.edit(f"`{e}`")
             os.remove(dosya) 
