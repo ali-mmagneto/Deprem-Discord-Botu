@@ -1,4 +1,6 @@
 import requests
+import telegraph
+from telegraph import upload_file
 import pyrogram
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 from pyrogram import Client, filters
@@ -198,7 +200,7 @@ async def telegraph_yukleme(bot, message):
             dosya = await message.reply_to_message.download(dizin)
             await text.edit("`Dosyan indiriliyor..`")
             yuklenen = upload_file(dosya) 
-            await text.edit_text(f"**🌐 | Telegraph Linki**:\n\n<code>https://telegra.ph{yuklenen[0]}</code>")     
+            await text.edit(f"**🌐 | Telegraph Linki**:\n\n<code>https://telegra.ph{yuklenen[0]}</code>")     
             os.remove(dosya) 
         except Exception as e:
             await text.edit(f"`{e}`")
