@@ -193,6 +193,9 @@ async def kurtardiklarimiz(bot, message):
 async def rename(bot, message):
     text = message.text.split(" ", 1)
     file_name = text[1]
-    await message.reply_text(file_name)
+    media = await bot.download_media(
+                message = message.reply_to_message,
+                file_name=f"{file_name}")
+    await bot.send_photo(file_name)
         
 Bot.run() 
