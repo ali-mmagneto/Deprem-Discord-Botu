@@ -188,23 +188,5 @@ async def kurtardiklarimiz(bot, message):
         chat_id=message.chat.id,
         from_chat_id=kurtardıklarımızknl,
         message_id=message_id)
-
-@Bot.on_message(filters.command('rename'))
-async def rename(bot, message):
-    text = message.text.split(" ", 1)
-    file_name = text[1]
-    caption = f"`{file_name}`"
-    file_path = f"downloads/{file_name}"
-    media = await bot.download_media(
-                message = message.reply_to_message,
-                file_name = f"{file_name}")
-    splitpath = media.split("/downloads/")
-    dow_file_name = splitpath[1]
-    old_file_name =f"downloads/{dow_file_name}"
-    os.rename(old_file_name,file_path)
-    await bot.send_video(
-        chat_id = message.chat.id,
-        video = file_path,
-        caption = caption)
         
 Bot.run() 
