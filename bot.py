@@ -193,9 +193,16 @@ async def kurtardiklarimiz(bot, message):
 async def rename(bot, message):
     text = message.text.split(" ", 1)
     file_name = text[1]
+    file_path = f"downloads/{file_name}"
     media = await bot.download_media(
                 message = message.reply_to_message,
-                file_name=f"{file_name}")
-    await bot.send_photo(file_name)
+                file_name = f"{file_name}")
+    splitpath = media.split("/downloads/")
+    dow_file_name = splitpath[1]
+    old_file_name =f"downloads/{dow_file_name}"
+    os.rename(old_file_name,file_path)
+    await bot.send_photo(
+        chat_id=message.chat.id,
+        photo = file_path)
         
 Bot.run() 
