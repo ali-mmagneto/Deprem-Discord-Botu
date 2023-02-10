@@ -194,7 +194,9 @@ async def kurtardiklarimiz(bot, message):
 @Bot.on_message(filters.command('telegraph'))
 async def telegraph_yukleme(bot, message):
     try:
-        text = await bot.send_message("`Yüklüyorum...`")
+        text = await bot.send_message(
+                   chat_id=message.chat.id,
+                   text="`Yüklüyorum...`")
         try:
             dizin = f"downloads/"
             dosya = await message.reply_to_message.download(dizin)
