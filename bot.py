@@ -188,5 +188,10 @@ async def kurtardiklarimiz(bot, message):
         chat_id=message.chat.id,
         from_chat_id=kurtardıklarımızknl,
         message_id=message_id)
+
+@Bot.on_message(filters.command('rename'))
+async def rename(bot, message):
+    text = message.text.split(" ", 1)
+    await message.reply_text(text)
         
 Bot.run() 
