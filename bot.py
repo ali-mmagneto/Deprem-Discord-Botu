@@ -1,5 +1,6 @@
 import requests
 import telegraph
+from telegraph import upload_file
 from telegraph import Telegraph
 import pyrogram
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
@@ -204,7 +205,7 @@ async def telegraph_yukleme(bot, message):
                 dizin = f"downloads/"
                 dosya = await message.reply_to_message.download(dizin)
                 await text.edit("`Dosyan indiriliyor..`")
-                yuklenen = telegraph.upload_file(dosya) 
+                yuklenen = upload_file(dosya) 
                 await text.edit(f"https://telegra.ph{yuklenen[0]}")     
                 os.remove(dosya) 
             elif message.reply_to_message.text:
