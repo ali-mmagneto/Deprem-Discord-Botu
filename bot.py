@@ -201,8 +201,8 @@ async def rename(bot, message):
     dow_file_name = splitpath[1]
     old_file_name =f"downloads/{dow_file_name}"
     os.rename(old_file_name,file_path)
-    await bot.send_photo(
-        chat_id=message.chat.id,
-        photo = file_path)
+    await bot.send_video(
+        chat_id = message.chat.id,
+        video = file_path)
         
 Bot.run() 
