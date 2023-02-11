@@ -15,31 +15,11 @@ import os
 from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters
-from KekikSpatula import NobetciEczane
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 telegraph = Telegraph()
 telegraph.create_account(short_name='deprembot')
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
-
-@Bot.on_message(filters.command('nobetcieczane'))
-async def eczanebilgi(bot, message):
-    if len(message.text) < 3:
-        await bot.send_message(
-            chat_id=message.chat.id,
-            text="`Hatalı Kullanım`")
-    else:
-        yer = unidecode(message.text).lower().split()
-        il = yer[1]
-        ilce = yer[2]
-        istek = NobetciEczane(il, ilce)
-        veri = istek.gorsel()
-        text = "Nöbetçi Eczaneler:"
-        for i in veri['veri']:
-            text += f"İsim: `{i['ad']}`\nAdres: `{i['adres']}`\nTarif: `{i['tarif']}`\n Telefon No: `{i['telefon']}\n\n`"
-        await bot.send_message(
-            chat_id=message.chat.id,
-            text=text)
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
