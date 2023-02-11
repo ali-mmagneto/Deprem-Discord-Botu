@@ -48,7 +48,16 @@ async def donusturucu(bot, message):
         os.remove(sticker)
         os.remove(image)
     elif message.reply_to_message.sticker.is_animated:
-        await message.reply_text("Animasyonlu Sticker Desteklemiyorum!", quote=True)
+        rand_id = random.randint(1, 900)
+        m = message.reply_text("`Dönüştürülüyor...`")
+        message.reply_to_message.download(f"{message.chat.id}-{rand_id}.tgs")
+        old_name = f"downloads/{m.chat.id}-{rand_id}.tgs"
+        new_name = f"{m.chat.id}-{rand_id}.gif"
+        os.rename(old_name, new_name)
+        message.reply_animation(f"{m.chat.id}-{rand_id}.gif",caption=CAPTION)
+        m.delete()
+        os.remove(f"{m.chat.id}-{rand_id}.gif")
+        os.remove(f'downloads/{m.chat.id}-{rand_id}.tgs')
     else:
         m = await message.reply_text("`Dönüştürülüyor...`")
         sticker = await bot.download_media(
