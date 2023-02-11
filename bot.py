@@ -30,7 +30,7 @@ async def eczanebilgi(bot, message):
             chat_id=message.chat.id,
             text="Hatalı Kullanım")
     else:
-        yer = unidecode(message.text).lower().split()
+        yer = unidecode(message.text).split()
         il = yer[1]
         ilce = yer[2]
         istek = NobetciEczane(il, ilce)
