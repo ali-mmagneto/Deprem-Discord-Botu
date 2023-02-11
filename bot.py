@@ -34,8 +34,9 @@ async def dovizzz(bot, message):
 @Bot.on_message(filters.command('depre'))
 async def eczanebilgi(bot, message):
     try:
-        link = message.text
-        cmd, sayi =  link.split(" ")
+        link = unidecode(message.text).split()
+        sayi =  link[1]
+        print(sayi)
         deprem = SonDepremler()
         text = "Deprem:\n"
         say = 0
