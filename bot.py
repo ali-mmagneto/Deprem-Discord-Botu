@@ -107,6 +107,8 @@ async def deprembilgi(bot, message):
     try:
         link = message.text
         cmd, sayi =  link.split(" ")
+        if sayi == 0:
+            sayi = 1
         say = 0
         response = requests.get(url)
         data = response.json()
