@@ -45,10 +45,11 @@ async def eczanebilgi(bot, message):
         print(ilce)
         istek = NobetciEczane(il, ilce)
         data = istek.veri
+        print(data)
         text = "Nöbetçi Eczaneler:\n\n"
         await bot.send_message(
             chat_id=message.chat.id,
-            text=data)
+            text=text)
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
