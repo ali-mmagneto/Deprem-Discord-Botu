@@ -173,12 +173,10 @@ async def havaa(bot, message):
             ev = unidecode(message.text).split()
             il = ev[1]
             ilce = ev[2]
-            il1 = il.upper()
-            ilce1 = ilce.upper()
             istek = HavaDurumu(il, ilce)
-            text = f"{il1} {ilce1} için:"
+            text = ""
             for i in json.loads(istek.gorsel())["veri"]:
-                text += f"\n**Hava Durumu**: `{i['derece']}`\nVakit: `{i['gun']}`"
+                text += f"{i['yer']} İçin:\nHava Durumu: `{i['derece']}`\nVakit: `{i['gun']}`"
             await bot.send_message(
                chat_id=message.chat.id,
                text=text)
