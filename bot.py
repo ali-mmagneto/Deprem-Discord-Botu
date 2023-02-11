@@ -15,8 +15,6 @@ import os
 from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters
-import KekikSpatula
-from KekikSpatula.nobetciEczane import NobetciEczane
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 telegraph = Telegraph()
