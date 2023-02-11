@@ -4,4 +4,4 @@ TgCrypto
 unidecode
 Pillow
 telegraph
-git+https://github.com/ali-mmagneto/KekikSpatula
+KekikSpatula
