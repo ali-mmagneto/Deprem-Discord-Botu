@@ -105,16 +105,23 @@ async def donusturucu(bot, message):
 @Bot.on_message(filters.command("deprem"))
 async def deprembilgi(bot, message):
     try:
+        cmd, sayi =  link.split(" ")
+        say = 0
         response = requests.get(url)
         data = response.json()
-        bilgi = data['data'][0]
-        latitude1 = f"{bilgi['enlem_n']}"
-        longitude1 = f"{bilgi['boylam_e']}"
-        dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
-        text = f"**TÜRKİYE'DE YAŞANAN SON DEPREM!!!:**\nBüyüklük: {bilgi['ml']}\nDerinlik: {bilgi['derinlik_km']}\nLokasyon: [{bilgi['yer']}]({dadresurl})\nTarih: {bilgi['tarih']}\nSaat: {bilgi['saat']}"
-        await bot.send_message(
-            chat_id=message.chat.id, 
-            text=text) 
+        bilgi = data['data']
+        text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!:**"
+        for i in bilgi:
+            say += 1
+            latitude1 = f"{i['enlem_n']}"
+            longitude1 = f"{i['boylam_e']}"
+            dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
+            text += f"\nBüyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
+            if say == int(sayi):
+                await bot.send_message(
+                    chat_id=message.chat.id, 
+                    text=text) 
+                return
     except Exception as e:
         print(e)
         await bot.send_message(
