@@ -16,12 +16,20 @@ from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters
 import KekikSpatula
-from KekikSpatula import NobetciEczane
+from KekikSpatula import NobetciEczane, Doviz
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 telegraph = Telegraph()
 telegraph.create_account(short_name='deprembot')
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
+doviz_ = Doviz()
+
+@Bot.on_message(filters.command("doviz"))
+async def dovizzz(bot, message):
+    text = "**Birim / Gişe Alış / Gişe Satış**\n\n"
+    for key in json.loads(doviz_.gorsel())["veri"]:
+        text += f"**{key['birim']}**: {key['Gişe Satış']} TL - {key['Gişe Satış']}\n"
+    await message.reply_text(text) 
 
 @Bot.on_message(filters.command('nobetcieczane'))
 async def eczanebilgi(bot, message):
