@@ -106,10 +106,11 @@ async def donusturucu(bot, message):
 async def deprembilgi(bot, message):
     try:
         if len(message.text) == 1:
-            sayi = 1 
+            sayi = 1
         else:
             link = message.text
             cmd, sayi =  link.split(" ")
+        print(len(message.text))
         say = 0
         response = requests.get(url)
         data = response.json()
