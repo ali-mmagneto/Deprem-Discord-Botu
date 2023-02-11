@@ -16,7 +16,7 @@ from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters
 import KekikSpatula
-from KekikSpatula import NobetciEczane, Doviz
+from KekikSpatula import NobetciEczane, Doviz, SonDepremler
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 telegraph = Telegraph()
 telegraph.create_account(short_name='deprembot')
@@ -31,24 +31,15 @@ async def dovizzz(bot, message):
         text += f"**{key['birim']}**: {key['Gişe Satış']} TL - {key['Gişe Satış']}\n"
     await message.reply_text(text) 
 
-@Bot.on_message(filters.command('nobetcieczane'))
+@Bot.on_message(filters.command('depre'))
 async def eczanebilgi(bot, message):
-    if len(message.text) < 3:
-        await bot.send_message(
-            chat_id=message.chat.id,
-            text="Hatalı Kullanım")
-    else:
-        link = message.text
-        cmd, il, ilce =  link.split(" ")
-        print(il) 
-        print(ilce)
-        eczane = NobetciEczane(il, ilce)
-        print(eczane.gorsel())
-        print(eczane.tablo)
-        text = f"Nöbetçi Eczaneler: {il} {ilce} {eczane} {eczane.veri} {eczane.gorsel()}\n\n" 
-        await bot.send_message(
-            chat_id=message.chat.id,
-            text=text)
+    deprem = SonDepremler()
+    text = "Depremler:\n"
+    for i in json.loads(deprem.gorsel())["veri"]:
+        text += f"{i['ml']}"
+    await bot.send_message(
+        chat_id=message.chat.id, 
+        text=text)
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
