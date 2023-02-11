@@ -4,3 +4,4 @@ TgCrypto
 unidecode
 Pillow
 telegraph
+KekikSpatula
