@@ -105,6 +105,7 @@ async def donusturucu(bot, message):
 @Bot.on_message(filters.command("deprem"))
 async def deprembilgi(bot, message):
     try:
+        link = message.text
         cmd, sayi =  link.split(" ")
         say = 0
         response = requests.get(url)
