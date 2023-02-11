@@ -16,7 +16,7 @@ from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters
 import KekikSpatula
-from KekikSpatula import NobetciEczane, Doviz, SonDepremler
+from KekikSpatula import NobetciEczane, Doviz, SonDepremler, HavaDurumu
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 telegraph = Telegraph()
 telegraph.create_account(short_name='deprembot')
@@ -162,45 +162,19 @@ async def deprembilgi(bot, message):
 
 
 @Bot.on_message(filters.command('hava'))
-async def hava(bot, message):
+async def havaa(bot, message):
     try:
         if len(message.text) < 2:
             bot.send_message(message.chat.id, "Hatalı Kullanım")
         else:
             ev = unidecode(message.text).lower().split()
-            sehir = ev[1]
-            sehir1 = sehir.upper()
-            hava_api = f"https://api.openweathermap.org/data/2.5/weather?appid=51018b60257b50207fc63de7c53af5e1&q={sehir}"
-            deger2 = urlopen(hava_api).read().decode("utf-8")
-            havajson = json.loads(deger2)
-            coord = havajson["coord"]
-            weather = havajson["weather"][0]
-            genel = havajson["main"]
-            wind = havajson["wind"]
-            derece = float(genel['temp']) - 273
-            derece2 = float(genel['feels_like']) - 273
-            icon="🌨️"
-            if weather["icon"]=="11d":
-                icon="⛈"
-            elif weather["icon"]=="09d":
-                icon="☔"
-            elif weather["icon"]=="10d":
-                icon="🌦"
-            elif weather["icon"]=="13d":
-                icon="❆"
-            elif weather["icon"]=="50d":
-                icon="🌫"
-            elif weather["icon"]=="01d":
-                icon="🌞"
-            elif weather["icon"]=="01n":
-                icon="🌜"
-            elif weather["icon"]=="03d" or weather["icon"]=="03n" :
-                icon="☁"
-            elif weather["icon"]=="04d" or weather["icon"]=="04n" :
-                icon="⛅"
-            elif weather["icon"]=="13n" :
-                icon="🌨️" 
-            text = f"{sehir1} için:\n**Hava Durumu**: `{weather['description']}` {icon}\n**Sıcaklık**: `{derece}`\n**Hissedilen Sıcaklık**: `{derece2}`"
+            il = ev[1]
+            ilce = ev[2]
+            il1 = il.upper()
+            ilce1 = ilce.upper()
+            istek = HavaDurumu(il, ilce)
+            h = json.loads(istek.gorsel())["veri"]
+            text = f"{il1}/{ilce1} için:\n**Hava Durumu**: `{h['derece']}`\nVakit: `{h['gun']}`"
             await bot.send_message(
                chat_id=message.chat.id,
                text=text)
