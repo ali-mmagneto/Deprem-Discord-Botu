@@ -117,7 +117,7 @@ async def deprembilgi(bot, message):
             latitude1 = f"{i['enlem_n']}"
             longitude1 = f"{i['boylam_e']}"
             dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
-            text += f"{say}-)Büyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
+            text += f"{say}-)\nBüyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
             if say == int(sayi):
                 await bot.send_message(
                     chat_id=message.chat.id, 
