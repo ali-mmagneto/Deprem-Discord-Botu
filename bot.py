@@ -35,11 +35,14 @@ async def dovizzz(bot, message):
 async def eczanebilgi(bot, message):
     deprem = SonDepremler()
     text = "Depremler:\n"
-    for i in json.loads(deprem.gorsel())["veri"] in range(5):
+    say = 0
+    for i in json.loads(deprem.gorsel())["veri"]:
         text += f"{i['ml']}\n"
-    await bot.send_message(
-        chat_id=message.chat.id, 
-        text=text)
+        say + 1
+        if say > 6:
+            await bot.send_message(
+                chat_id=message.chat.id, 
+                text=text)
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
