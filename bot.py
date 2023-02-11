@@ -43,7 +43,8 @@ async def eczanebilgi(bot, message):
         print(il) 
         print(ilce)
         eczane = NobetciEczane(il, ilce)
-        print(eczane.veri)
+        print(eczane.gorsel())
+        print(eczane.tablo)
         text = f"Nöbetçi Eczaneler: {il} {ilce} {eczane.veri}\n\n" 
         await bot.send_message(
             chat_id=message.chat.id,
