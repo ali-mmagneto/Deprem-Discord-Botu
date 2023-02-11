@@ -48,7 +48,6 @@ async def eczanebilgi(bot, message):
         text = f"Nöbetçi Eczaneler: {il} {ilce} \n\n" 
         for i in json.loads(data)["veri"]:
             text += f"İsim: {i['ad']}\nAdres: {i['adres']}\nTarif: {i['tarif']}\n Telefon No: {i['telefon']}\n\n"
-        await bot.send_message(
         print(data)
         await bot.send_message(
             chat_id=message.chat.id,
