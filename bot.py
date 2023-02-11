@@ -42,7 +42,7 @@ async def eczanebilgi(bot, message):
         cmd, il, ilce =  link.split(" ")
         print(il) 
         print(ilce)
-        eczane = NobetciEczane(il, ilce)
+        eczane = NobetciEczane({il}, {ilce})
         veriler = eczane.veri["veri"]
         print(eczane.gorsel())
         print(eczane.tablo)
