@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow
 
 
-RUN apt -qq install -y git python3 python3-pip
+RUN apt -qq install -y git python-3.10 python3-pip
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
