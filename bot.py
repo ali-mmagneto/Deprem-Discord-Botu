@@ -40,7 +40,7 @@ async def eczanebilgi(bot, message):
         text = "Deprem:\n"
         say = 0
         for i in json.loads(deprem.gorsel())["veri"]:
-            text += f"Yer: [{i['yer']}]('https://maps.google.com/maps?q=' + '{i['enlem']}' + ',' +' {i['boylam']}')\nDerinlik: {i['derinlik']}\nBüyüklük: {i['ml']}\nTarih: {i['tarih']} {i['saat']}\n\n"
+            text += f"Yer: [{i['yer']}]('https://maps.google.com/maps?q=' + '{i['enlem']}' + ',' + '{i['boylam']}')\nDerinlik: {i['derinlik']}\nBüyüklük: {i['ml']}\nTarih: {i['tarih']} {i['saat']}\n\n"
             say += 1
             if say == int(sayi):
                 await bot.send_message(
