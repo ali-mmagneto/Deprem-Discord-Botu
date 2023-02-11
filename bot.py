@@ -34,13 +34,15 @@ async def dovizzz(bot, message):
 @Bot.on_message(filters.command('depre'))
 async def eczanebilgi(bot, message):
     try:
+        link = message.text
+        cmd, sayi =  link.split(" ")
         deprem = SonDepremler()
-        text = "Depremler:\n"
+        text = "Deprem:\n"
         say = 0
         for i in json.loads(deprem.gorsel())["veri"]:
-            text += f"{i['ml']}\n"
+            text += f"Yer: [{i['yer']}](f"https://maps.google.com/maps?q={i['enlem']},{i['boylam']}")\nDerinlik: {i['derinlik']}\nBüyüklük: {i['ml']}\nTarih: {i['tarih']} {i['saat']}\n\n"
             say += 1
-            if say > 6:
+            if say == int(sayi):
                 await bot.send_message(
                     chat_id=message.chat.id, 
                     text=text)
@@ -54,7 +56,7 @@ async def start(bot, message):
         chat_id=message.chat.id,
         photo="https://telegra.ph/file/8069ff4c3544d796c977a.jpg",
         caption="Komut 1 - /deprem Son Depremi Gösterir.\nKomut 2 - /deprem3 Son 3 Depremi Gösterir.\nKomut 3 - /hava girdiğin bölgenin güncel hava durumunu gösterir.\nKomut 4 - /kurtardiklarimiz azcikta olsa içimize umut serpicek görüntüler. Kaynak: @solcugazete, @bpthaber\n\nBeni Oluşturan: @mmagneto")
-    print(python3 --version)
+    
 @Bot.on_message(filters.command('donustur'))
 async def donusturucu(bot, message):
     user_id = message.from_user.id
