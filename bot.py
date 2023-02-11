@@ -45,7 +45,7 @@ async def eczanebilgi(bot, message):
         print(ilce)
         eczane = NobetciEczane("Düzce", "Cumayeri")
         text = f"Nöbetçi Eczaneler: {il} {ilce} \n\n" 
-        for i in eczane.gorsel()['veri']:
+        for i in eczane.gorsel():
             print(eczane.veri)
             print(eczane.gorsel)
             text += f"İsim: {i['ad']}\nAdres: {i['adres']}\nTarif: {i['tarif']}\n Telefon No: {i['telefon']}\n\n"
