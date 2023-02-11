@@ -93,25 +93,6 @@ async def deprembilgi(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
-@Bot.on_message(filters.command('nobetcieczane'))
-async def eczanebilgi(bot, message):
-    if len(message.text) < 3:
-        await bot.send_message(
-            chat_id=message.chat.id,
-            text="`Hatalı Kullanım`")
-    else:
-        yer = unidecode(message.text).lower().split()
-        il = yer[1]
-        ilce = yer[2]
-        istek = NobetciEczane(il, ilce)
-        veri = istek.gorsel()
-        text = "Nöbetçi Eczaneler:"
-        for i in veri['veri']:
-            text += f"İsim: `{i['ad']}`\nAdres: `{i['adres']}`\nTarif: `{i['tarif']}`\n Telefon No: `{i['telefon']}\n\n`"
-        await bot.send_message(
-            chat_id=message.chat.id,
-            text=text)
-
 @Bot.on_message(filters.command("deprem3"))
 async def deprembilgi(bot, message):
     try:
