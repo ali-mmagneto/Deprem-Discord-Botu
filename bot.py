@@ -55,7 +55,7 @@ async def start(bot, message):
     await bot.send_photo(
         chat_id=message.chat.id,
         photo="https://telegra.ph/file/8069ff4c3544d796c977a.jpg",
-        caption="Komut 1 - /deprem Son Depremi Gösterir.\nKomut 2 - /deprem3 Son 3 Depremi Gösterir.\nKomut 3 - /hava girdiğin bölgenin güncel hava durumunu gösterir.\nKomut 4 - /kurtardiklarimiz azcikta olsa içimize umut serpicek görüntüler. Kaynak: @solcugazete, @bpthaber\n\nBeni Oluşturan: @mmagneto")
+        caption="Komut 1 - /deprem <istediğin deprem sayısı>\nKomut 2 - /hava girdiğin bölgenin güncel hava durumunu gösterir.\nKomut 3 - /kurtardiklarimiz azcikta olsa içimize umut serpicek görüntüler. Kaynak: @solcugazete, @bpthaber\n\nBeni Oluşturan: @mmagneto")
     
 @Bot.on_message(filters.command('donustur'))
 async def donusturucu(bot, message):
