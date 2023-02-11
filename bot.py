@@ -43,12 +43,11 @@ async def eczanebilgi(bot, message):
         ilce = yer[2]
         print(il) 
         print(ilce)
-        istek = NobetciEczane(il, ilce)
-        data = istek.gorsel()
+        eczane = NobetciEczane("Düzce", "Cumayeri")
         text = f"Nöbetçi Eczaneler: {il} {ilce} \n\n" 
-        for i in json.loads(data)["veri"]:
+        for i in json.loads(eczane.gorsel())['veri']:
+            print(eczane.veri)
             text += f"İsim: {i['ad']}\nAdres: {i['adres']}\nTarif: {i['tarif']}\n Telefon No: {i['telefon']}\n\n"
-        print(data)
         await bot.send_message(
             chat_id=message.chat.id,
             text=text)
