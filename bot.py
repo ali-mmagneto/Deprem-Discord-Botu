@@ -44,6 +44,7 @@ async def eczanebilgi(bot, message):
                 await bot.send_message(
                     chat_id=message.chat.id, 
                     text=text)
+                return
     except Exception as e:
         await bot.send_message(message.chat.id, f"`{e}`")
 
