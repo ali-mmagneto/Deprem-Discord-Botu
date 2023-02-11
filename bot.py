@@ -49,7 +49,7 @@ async def donusturucu(bot, message):
         os.remove(image)
     elif message.reply_to_message.sticker.is_animated:
         rand_id = random.randint(1, 900)
-        mes = bot.send_message(message.chat.id, "`Dönüştürülüyor...`")
+        mes = await bot.send_message(message.chat.id, "`Dönüştürülüyor...`")
         await bot.download_media(
             message = message.reply_to_message,
             file_name=f"downloads/{message.chat.id}-{rand_id}.tgs")
