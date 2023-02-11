@@ -38,7 +38,7 @@ async def eczanebilgi(bot, message):
     say = 0
     for i in json.loads(deprem.gorsel())["veri"]:
         text += f"{i['ml']}\n"
-        say + 1
+        say += 1
         if say > 6:
             await bot.send_message(
                 chat_id=message.chat.id, 
