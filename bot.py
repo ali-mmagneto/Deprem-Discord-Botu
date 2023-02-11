@@ -109,7 +109,10 @@ async def donusturucu(bot, message):
 async def deprembilgi(bot, message):
     try:
         link = unidecode(message.text).split()
-        sayi =  link[1]
+        if len(link) == 1:
+            sayi = 1
+        else:
+            sayi =  link[1]
         print(sayi)
         say = 0
         response = requests.get(url)
