@@ -15,6 +15,7 @@ import os
 from PIL import Image
 from pyrogram.types import Message
 from pyrogram import Client, filters
+from KekikSpatula import NobetciEczane
 
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 telegraph = Telegraph()
@@ -103,19 +104,11 @@ async def eczanebilgi(bot, message):
         yer = unidecode(message.text).lower().split()
         il = yer[1]
         ilce = yer[2]
-        eczane_url = f"https://www.nosyapi.com/apiv2/pharmacyLink?city={il}&county={ilce}&apikey=aYG3s2ErzrWUUl7Xt6RrTzve0zm3rb5gfgYHfoh9IBTO84ZhFp7dgi6wz7C6"
-        istek = requests.get(eczane_url)
-        veri = istek.json()
-        ebilgi = veri['data'][0]
-        elatitude = f"{ebilgi['latitude']}"
-        elongitude = f"{ebilgi['longitude']}"
-        adresurl = 'https://maps.google.com/maps?q=' + elatitude + ',' + elongitude
-        text = f"Nöbetçi Eczane: ⚕ {ebilgi['EczaneAdi']}\n\nTelefon Numarası: ☎️ {ebilgi['Telefon']}\n\n@TrDepremBot" 
-        await bot.send_location(
-            chat_id=message.chat.id,
-            latitude=float(elatitude), 
-            longitude=float(elongitude),
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"{ebilgi['EczaneAdi']} Git", url=adresurl),InlineKeyboardButton(f"Beni Oluşturan", url="https://t.me/mmagneto")]]))
+        istek = NobetciEczane(il, ilce)
+        veri = istek.gorsel()
+        text = "Nöbetçi Eczaneler:"
+        for i in veri['veri']:
+            text += f"İsim: `{i['ad']}`\nAdres: `{i['adres']}`\nTarif: `{i['tarif']}`\n Telefon No: `{i['telefon']}\n\n`"
         await bot.send_message(
             chat_id=message.chat.id,
             text=text)
