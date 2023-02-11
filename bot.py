@@ -52,11 +52,11 @@ async def donusturucu(bot, message):
         m = message.reply_text("`Dönüştürülüyor...`")
         message.reply_to_message.download(f"{message.chat.id}-{rand_id}.tgs")
         old_name = f"downloads/{message.chat.id}-{rand_id}.tgs"
-        new_name = f"{message.chat.id}-{rand_id}.gif"
+        new_name = f"downloads/{message.chat.id}-{rand_id}.gif"
         os.rename(old_name, new_name)
         message.reply_animation(f"{message.chat.id}-{rand_id}.gif")
         m.delete()
-        os.remove(f"{message.chat.id}-{rand_id}.gif")
+        os.remove(f"downloads/{message.chat.id}-{rand_id}.gif")
         os.remove(f'downloads/{message.chat.id}-{rand_id}.tgs')
     else:
         m = await message.reply_text("`Dönüştürülüyor...`")
