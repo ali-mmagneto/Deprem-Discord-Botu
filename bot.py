@@ -56,7 +56,7 @@ async def donusturucu(bot, message):
         old_name = f"downloads/{message.chat.id}-{rand_id}.tgs"
         new_name = f"downloads/{message.chat.id}-{rand_id}.gif"
         os.rename(old_name, new_name)
-        message.reply_animation(f"{message.chat.id}-{rand_id}.gif")
+        await message.reply_animation(f"{message.chat.id}-{rand_id}.gif")
         mes.delete()
         os.remove(f"downloads/{message.chat.id}-{rand_id}.gif")
         os.remove(f'downloads/{message.chat.id}-{rand_id}.tgs')
