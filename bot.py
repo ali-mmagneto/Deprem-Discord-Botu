@@ -33,16 +33,19 @@ async def dovizzz(bot, message):
 
 @Bot.on_message(filters.command('depre'))
 async def eczanebilgi(bot, message):
-    deprem = SonDepremler()
-    text = "Depremler:\n"
-    say = 0
-    for i in json.loads(deprem.gorsel())["veri"]:
-        text += f"{i['ml']}\n"
-        say += 1
-        if say > 6:
-            await bot.send_message(
-                chat_id=message.chat.id, 
-                text=text)
+    try:
+        deprem = SonDepremler()
+        text = "Depremler:\n"
+        say = 0
+        for i in json.loads(deprem.gorsel())["veri"]:
+            text += f"{i['ml']}\n"
+            say += 1
+            if say > 6:
+                await bot.send_message(
+                    chat_id=message.chat.id, 
+                    text=text)
+    except Exception as e:
+        await bot.send_message(message.chat.id, f"`{e}`")
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
