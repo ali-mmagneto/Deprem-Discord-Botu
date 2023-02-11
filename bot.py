@@ -31,27 +31,6 @@ async def dovizzz(bot, message):
         text += f"**{key['birim']}**: {key['Gişe Satış']} TL - {key['Gişe Satış']}\n"
     await message.reply_text(text) 
 
-@Bot.on_message(filters.command('depre'))
-async def eczanebilgi(bot, message):
-    try:
-        link = unidecode(message.text).split()
-        sayi =  link[1]
-        if sayi == "list index out of range":
-            sayi = 1
-        else:
-            deprem = SonDepremler()
-            text = "Deprem:\n"
-            say = 0
-            for i in json.loads(deprem.gorsel())["veri"]:
-                text += f"Yer: [{i['yer']}]('https://maps.google.com/maps?q=' + '{i['enlem']}' + ',' + '{i['boylam']}')\nDerinlik: {i['derinlik']}\nBüyüklük: {i['ml']}\nTarih: {i['tarih']} {i['saat']}\n\n"
-                say += 1
-                if say == int(sayi):
-                    await bot.send_message(
-                        chat_id=message.chat.id, 
-                        text=text)
-                    return
-    except Exception as e:
-        await bot.send_message(message.chat.id, f"`{e}`")
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, message):
