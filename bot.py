@@ -42,9 +42,9 @@ async def eczanebilgi(bot, message):
         il = yer[1]
         ilce = yer[2]
         istek = NobetciEczane(il, ilce)
-        data = istek.gorsel.json()
+        data = istek.veri
         text = "Nöbetçi Eczaneler:\n\n"
-        for i in istek["veri"]:
+        for i in data["veri"]:
             text += f"İsim: {i['ad']}\nAdres: {i['adres']}\nTarif: {i['tarif']}\n Telefon No: {i['telefon']}\n\n"
         await bot.send_message(
             chat_id=message.chat.id,
