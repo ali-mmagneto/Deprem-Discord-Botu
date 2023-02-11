@@ -35,9 +35,8 @@ async def dovizzz(bot, message):
 async def eczanebilgi(bot, message):
     deprem = SonDepremler()
     text = "Depremler:\n"
-    for i in json.loads(deprem.gorsel())["veri"]:
-        for say in range(5):
-            text += f"{i['ml']}\n"
+    for i in json.loads(deprem.gorsel())["veri"] in range(5):
+        text += f"{i['ml']}\n"
     await bot.send_message(
         chat_id=message.chat.id, 
         text=text)
