@@ -50,7 +50,7 @@ async def donusturucu(bot, message):
     elif message.reply_to_message.sticker.is_animated:
         rand_id = random.randint(1, 900)
         m = message.reply_text("`Dönüştürülüyor...`")
-        message.reply_to_message.download(f"{message.chat.id}-{rand_id}.tgs")
+        message.reply_to_message.download(f"downloads/{message.chat.id}-{rand_id}.tgs")
         old_name = f"downloads/{message.chat.id}-{rand_id}.tgs"
         new_name = f"downloads/{message.chat.id}-{rand_id}.gif"
         os.rename(old_name, new_name)
