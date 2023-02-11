@@ -42,8 +42,9 @@ async def eczanebilgi(bot, message):
         cmd, il, ilce =  link.split(" ")
         print(il) 
         print(ilce)
-        eczane = NobetciEczane("Düzce", "Cumayeri")
-        text = f"Nöbetçi Eczaneler: {il} {ilce} \n\n" 
+        eczane = NobetciEczane(il, ilce)
+        print(eczane.veri)
+        text = f"Nöbetçi Eczaneler: {il} {ilce} {eczane.veri}\n\n" 
         await bot.send_message(
             chat_id=message.chat.id,
             text=text)
