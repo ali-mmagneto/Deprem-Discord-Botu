@@ -47,7 +47,8 @@ async def depremdongusu(bot, message, caption1, say):
             text += f"{say}-)\nBüyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
             if int(say) == sayi:
                 if text == caption1:
-                    time.sleep(60)
+                    time.sleep(60) 
+                    text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!\n\n**"
                 else:
                     await bot.send_message(
                         chat_id="sohbetgnl2", 
