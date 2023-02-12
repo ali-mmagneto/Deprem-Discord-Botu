@@ -34,7 +34,7 @@ import re
 
 
 
-async def video_to_gif(old_name, new_name, bot):
+async def video_to_gif(old_name, new_name, bot, message):
     try:
         output = new_name 
         out_location = f"downloads/{output}"
@@ -147,7 +147,7 @@ async def donusturucu(bot, message):
             file_name=f"downloads/{message.chat.id}-{rand_id}.mp4")
         old_name = f"downloads/{message.chat.id}-{rand_id}.mp4"
         new_name = f"{message.chat.id}-{rand_id}.gif"
-        await video_to_gif(old_name, new_name, bot)
+        await video_to_gif(old_name, new_name, bot, message)
         
     else:
         m = await message.reply_text("`Dönüştürülüyor...`")
