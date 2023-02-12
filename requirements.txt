@@ -5,3 +5,5 @@ unidecode
 Pillow
 telegraph
 KekikSpatula
+ffmpeg-python
+asyncio
