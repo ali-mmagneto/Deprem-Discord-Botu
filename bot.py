@@ -50,10 +50,6 @@ async def video_to_gif(old_name, new_name, bot, message, mes):
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
             )
-    await asyncio.wait([
-        read_stderr(start,msg, process),
-        process.wait(),
-    ])
     
     if process.returncode == 0:
         await mes.edit('İşlem Tamamlandı')
