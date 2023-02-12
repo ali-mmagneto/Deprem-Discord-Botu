@@ -137,6 +137,40 @@ async def deprembilgi(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
+@Bot.on_message(filters.command("depremdongu"))
+async def deprembilgi(bot, message):
+    try:
+        link = unidecode(message.text).split()
+        sayi = 1
+        print(sayi)
+        say = 0
+        response = requests.get(url)
+        data = response.json()
+        bilgi = data['data']
+        text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!\n\n**"
+        for i in bilgi:
+            say += 1
+            latitude1 = f"{i['enlem_n']}"
+            longitude1 = f"{i['boylam_e']}"
+            caption = ""
+            dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
+            text += f"{say}-)\nBüyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
+            if int(say) == sayi:
+                if text == caption:
+                    time.sleep(60)
+                else:
+                    await bot.send_message(
+                        chat_id=message.chat.id, 
+                        text=text) 
+                caption = text
+                say = 0
+                time.sleep(60)
+    except Exception as e:
+        print(e)
+        await bot.send_message(
+            chat_id=message.chat.id,
+            text=f"`{e}`")
+
 @Bot.on_message(filters.command('kurtardiklarimiz'))
 async def kurtardiklarimiz(bot, message):
     kurtardıklarımızknl = "dddhhsjdheuehehehrjr"
