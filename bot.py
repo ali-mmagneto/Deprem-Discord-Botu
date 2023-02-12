@@ -153,7 +153,6 @@ async def deprembilgi(bot, message):
             say += 1
             latitude1 = f"{i['enlem_n']}"
             longitude1 = f"{i['boylam_e']}"
-            caption = ""
             dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
             text += f"{say}-)\nBüyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
             if int(say) == sayi:
