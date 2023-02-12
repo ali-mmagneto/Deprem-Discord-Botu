@@ -43,14 +43,15 @@ async def video_to_gif(old_name, new_name, bot, message, mes):
             '-c:v','copy',
             '-y',out_location
             ]
-
-    process = await asyncio.create_subprocess_exec(
-            *command,
-            # stdout must a pipe to be accessible as process.stdout
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            )
-    
+    try:
+        process = await asyncio.create_subprocess_exec(
+                *command,
+                # stdout must a pipe to be accessible as process.stdout
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+                )
+    except Exception as e:
+        message.reply_text(f"e")
     if process.returncode == 0:
         await mes.edit('İşlem Tamamlandı')
     else:
