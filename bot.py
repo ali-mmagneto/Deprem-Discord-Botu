@@ -31,6 +31,38 @@ from unidecode import unidecode
 import json
 import re
 
+async def depremdongusu(bot, message, caption1, say):
+    try:
+        sayi = 1
+        print(sayi)
+        response = requests.get(url)
+        data = response.json()
+        bilgi = data['data']
+        text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!\n\n**"
+        for i in bilgi:
+            say += 1
+            latitude1 = f"{i['enlem_n']}"
+            longitude1 = f"{i['boylam_e']}"
+            dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
+            text += f"{say}-)\nBüyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
+            if int(say) == sayi:
+                if text == caption1:
+                    time.sleep(60)
+                else:
+                    await bot.send_message(
+                        chat_id="sohbetgnl2", 
+                        text=text)
+                    caption1 = text
+                    say = 0
+                    text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!\n\n**"
+                    time.sleep(60)
+                    depremdongusu(bot, message, caption1, say)
+    except Exception as e:
+        print(e)
+        await bot.send_message(
+            chat_id=message.chat.id,
+            text=f"`{e}`")
+
 @Bot.on_message(filters.command('hava'))
 async def havaa(bot, message):
     try:
@@ -156,16 +188,14 @@ async def deprembilgi(bot, message):
             dadresurl = 'https://maps.google.com/maps?q=' + latitude1 + ',' + longitude1
             text += f"{say}-)\nBüyüklük: {i['ml']}\nDerinlik: {i['derinlik_km']}\nLokasyon: [{i['yer']}]({dadresurl})\nTarih: {i['tarih']} {i['saat']}\n\n"
             if int(say) == sayi:
-                if text == caption:
-                    time.sleep(60)
-                else:
-                    await bot.send_message(
-                        chat_id="sohbetgnl2", 
-                        text=text) 
-                caption = text
+                await bot.send_message(
+                    chat_id="sohbetgnl2", 
+                    text=text) 
+                caption1 = text
                 say = 0
-                text = ""
+                text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!\n\n**"
                 time.sleep(60)
+                depremdongusu(bot, message, caption1, say)
     except Exception as e:
         print(e)
         await bot.send_message(
