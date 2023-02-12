@@ -51,9 +51,9 @@ async def video_to_gif(old_name, new_name, bot, message):
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
                 )
-        await bot.send_animation(
+        await bot.send_video(
             chat_id=message.chat.id, 
-            animation=out_location)
+            video=old_name)
     except Exception as e:
         await bot.send_message(message.chat.id, f"{e}")
 
