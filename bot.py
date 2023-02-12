@@ -22,6 +22,7 @@ from KekikSpatula import NobetciEczane, Doviz, SonDepremler, HavaDurumu
 Bot = Client("DepremBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 telegraph = Telegraph()
 telegraph.create_account(short_name='deprembot')
+import asyncio
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
 
@@ -30,6 +31,25 @@ from KekikSpatula import HavaDurumu
 from unidecode import unidecode
 import json
 import re
+
+
+
+async def video_to_gif(old_name, new_name, message):
+    output = new_name 
+    out_location = Config.DOWNLOAD_DIR+'/'+output
+    command = [
+            'ffmpeg','-hide_banner',
+            '-i',old_name,
+            '-y',out_location
+            ]
+
+    process = await asyncio.create_subprocess_exec(
+            *command,
+            # stdout must a pipe to be accessible as process.stdout
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            )
+    await message.reply_animation(out_location)
 
 async def depremdongusu(bot, message, caption1, say):
     try:
@@ -113,19 +133,16 @@ async def donusturucu(bot, message):
         await m.delete()
         os.remove(sticker)
         os.remove(image)
-    elif message.reply_to_message.sticker.is_animated:
+    elif message.reply_to_message.video:
         rand_id = random.randint(1, 900)
         mes = await bot.send_message(message.chat.id, "`Dönüştürülüyor...`")
         await bot.download_media(
             message = message.reply_to_message,
-            file_name=f"downloads/{message.chat.id}-{rand_id}.tgs")
-        old_name = f"downloads/{message.chat.id}-{rand_id}.tgs"
-        new_name = f"downloads/{message.chat.id}-{rand_id}.gif"
-        os.rename(old_name, new_name)
-        await message.reply_animation(f"{message.chat.id}-{rand_id}.gif")
-        mes.delete()
-        os.remove(f"downloads/{message.chat.id}-{rand_id}.gif")
-        os.remove(f'downloads/{message.chat.id}-{rand_id}.tgs')
+            file_name=f"{Config.DOWNLOAD_DIR}/{message.chat.id}-{rand_id}.mp4")
+        old_name = f"{Config.DOWNLOAD_DIR}/{message.chat.id}-{rand_id}.mp4"
+        new_name = f"{message.chat.id}-{rand_id}.gif"
+        await video_to_gif(old_name, new_name, message)
+        
     else:
         m = await message.reply_text("`Dönüştürülüyor...`")
         sticker = await bot.download_media(
