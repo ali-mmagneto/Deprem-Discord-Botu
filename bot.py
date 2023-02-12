@@ -22,14 +22,6 @@ telegraph = Telegraph()
 telegraph.create_account(short_name='deprembot')
 
 url = "https://hasanadiguzel.com.tr/api/sondepremler"
-doviz_ = Doviz()
-
-@Bot.on_message(filters.command("doviz"))
-async def dovizzz(bot, message):
-    text = "**Birim / Gişe Alış / Gişe Satış**\n\n"
-    for key in json.loads(doviz_.gorsel())["veri"]:
-        text += f"**{key['birim']}**: {key['Gişe Satış']} TL - {key['Gişe Satış']}\n"
-    await message.reply_text(text) 
 
 
 @Bot.on_message(filters.command("start"))
@@ -115,32 +107,10 @@ async def deprembilgi(bot, message):
             chat_id=message.chat.id,
             text=f"`{e}`")
 
-
-@Bot.on_message(filters.command('hava'))
-async def havaa(bot, message):
-    try:
-        if len(message.text) < 2:
-            bot.send_message(message.chat.id, "Hatalı Kullanım")
-        else:
-            ev = unidecode(message.text).split()
-            il = ev[1]
-            ilce = ev[2]
-            istek = HavaDurumu(il, ilce)
-            text = ""
-            for i in json.loads(istek.gorsel())["veri"]:
-                text += f"{i['yer']} İçin:\nHava Durumu: `{i['derece']}`\nVakit: `{i['gun']}`"
-            await bot.send_message(
-               chat_id=message.chat.id,
-               text=text)
-    except Exception as e:
-        await bot.send_message(
-            chat_id=message.chat.id,
-            text=f"`{e}`")
-
 @Bot.on_message(filters.command('kurtardiklarimiz'))
 async def kurtardiklarimiz(bot, message):
     kurtardıklarımızknl = "dddhhsjdheuehehehrjr"
-    message_id = random.randint(2, 123)
+    message_id = random.randint(2, 125)
     await bot.copy_message(
         chat_id=message.chat.id,
         from_chat_id=kurtardıklarımızknl,
