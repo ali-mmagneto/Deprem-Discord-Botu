@@ -164,6 +164,7 @@ async def deprembilgi(bot, message):
                         text=text) 
                 caption = text
                 say = 0
+                text = ""
                 time.sleep(60)
     except Exception as e:
         print(e)
