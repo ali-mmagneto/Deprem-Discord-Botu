@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow
 
 
-RUN apt -qq install -y git python3-pip
+RUN apt -qq install -y git python3-pip ffmpeg
 
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
