@@ -51,7 +51,7 @@ async def video_to_gif(old_name, new_name, bot, message, mes):
                 stderr=asyncio.subprocess.PIPE,
                 )
     except Exception as e:
-        message.reply_text(f"e")
+        await message.reply_text(f"e")
     if process.returncode == 0:
         await mes.edit('İşlem Tamamlandı')
     else:
