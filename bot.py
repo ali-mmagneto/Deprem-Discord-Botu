@@ -144,9 +144,9 @@ async def donusturucu(bot, message):
         mes = await bot.send_message(message.chat.id, "`Dönüştürülüyor...`")
         await bot.download_media(
             message = message.reply_to_message,
-            file_name=f"downloads/{message.chat.id}-{rand_id}.mp4")
-        old_name = f"downloads/{message.chat.id}-{rand_id}.mp4"
-        new_name = f"{message.chat.id}-{rand_id}.gif"
+            file_name=f"downloads/{message.chat.id}-{rand_id}.mkv")
+        old_name = f"downloads/{message.chat.id}-{rand_id}.mkv"
+        new_name = f"{message.chat.id}-{rand_id}.mp4"
         await video_to_gif(old_name, new_name, bot, message)
         
     else:
