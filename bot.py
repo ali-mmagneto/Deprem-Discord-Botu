@@ -37,7 +37,7 @@ async def depremdongusu(bot, message, caption1, say):
         print(sayi)
         response = requests.get(url)
         data = response.json()
-        bilgi = data['data']
+        bilgi = data['data'][0]
         text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!\n\n**"
         for i in bilgi:
             say += 1
@@ -180,7 +180,7 @@ async def deprembilgi(bot, message):
         say = 0
         response = requests.get(url)
         data = response.json()
-        bilgi = data['data']
+        bilgi = data['data'][0]
         text = "**TÜRKİYE'DE YAŞANAN SON DEPREMLER!!!\n\n**"
         for i in bilgi:
             say += 1
