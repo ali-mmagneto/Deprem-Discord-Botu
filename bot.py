@@ -152,9 +152,9 @@ async def donusturucu(bot, message):
         new_name = f"{message.chat.id}-{rand_id}.mp4"
         videom = await video_to_gif(old_name, new_name, bot, message, mes)
         video = f"downloads/{videom}"
-        await bot.send_video(
+        await bot.send_animation(
             chat_id=message.chat.id,
-            video = video)
+            animation = video)
     else:
         m = await message.reply_text("`Dönüştürülüyor...`")
         sticker = await bot.download_media(
