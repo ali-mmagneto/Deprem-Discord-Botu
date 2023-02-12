@@ -35,27 +35,33 @@ import re
 
 
 async def video_to_gif(old_name, new_name, bot, message):
-    try:
-        output = new_name 
-        out_location = f"downloads/{output}"
-        command = [
-                'ffmpeg','-hide_banner',
-                '-i',old_name,
-                '-c:v','copy',
-                '-y',out_location
-                ]
+    output = new_name 
+    out_location = f"downloads/{output}"
+    command = [
+            'ffmpeg','-hide_banner',
+            '-i',old_name,
+            '-c:v','copy',
+            '-y',out_location
+            ]
 
-        process = await asyncio.create_subprocess_exec(
-                *command,
-                # stdout must a pipe to be accessible as process.stdout
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE,
-                )
-        await bot.send_video(
-            chat_id=message.chat.id, 
-            video=out_location)
-    except Exception as e:
-        await bot.send_message(message.chat.id, f"{e}")
+    process = await asyncio.create_subprocess_exec(
+            *command,
+            # stdout must a pipe to be accessible as process.stdout
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            )
+    await asyncio.wait([
+        read_stderr(start,msg, process),
+        process.wait(),
+    ])
+    
+    if process.returncode == 0:
+        await mes.edit('İşlem Tamamlandı')
+    else:
+        await mes.edit('Bir Hata Oluştu!')
+        return False
+    time.sleep(2)
+    return out_location
 
 async def depremdongusu(bot, message, caption1, say):
     try:
@@ -147,8 +153,10 @@ async def donusturucu(bot, message):
             file_name=f"downloads/{message.chat.id}-{rand_id}.mkv")
         old_name = f"downloads/{message.chat.id}-{rand_id}.mkv"
         new_name = f"{message.chat.id}-{rand_id}.mp4"
-        await video_to_gif(old_name, new_name, bot, message)
-        
+        videom = await video_to_gif(old_name, new_name, bot, message)
+        await bot.send_video(
+            chat_id=message.chat.id,
+            video = videom)
     else:
         m = await message.reply_text("`Dönüştürülüyor...`")
         sticker = await bot.download_media(
