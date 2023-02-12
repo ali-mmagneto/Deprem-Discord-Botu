@@ -12,6 +12,7 @@ from unidecode import unidecode
 from urllib.request import urlopen
 import random
 import os
+import time
 import re
 from PIL import Image
 from pyrogram.types import Message
@@ -160,7 +161,7 @@ async def deprembilgi(bot, message):
                     time.sleep(60)
                 else:
                     await bot.send_message(
-                        chat_id=message.chat.id, 
+                        chat_id="sohbetgnl2", 
                         text=text) 
                 caption = text
                 say = 0
