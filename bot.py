@@ -34,7 +34,7 @@ import re
 
 
 
-async def video_to_gif(old_name, new_name, bot, message):
+async def video_to_gif(old_name, new_name, bot, message, mes):
     output = new_name 
     out_location = f"downloads/{output}"
     command = [
@@ -153,7 +153,7 @@ async def donusturucu(bot, message):
             file_name=f"downloads/{message.chat.id}-{rand_id}.mkv")
         old_name = f"downloads/{message.chat.id}-{rand_id}.mkv"
         new_name = f"{message.chat.id}-{rand_id}.mp4"
-        videom = await video_to_gif(old_name, new_name, bot, message)
+        videom = await video_to_gif(old_name, new_name, bot, message, mes)
         await bot.send_video(
             chat_id=message.chat.id,
             video = videom)
