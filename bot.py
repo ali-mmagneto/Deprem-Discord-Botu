@@ -35,21 +35,27 @@ import re
 
 
 async def video_to_gif(old_name, new_name, message):
-    output = new_name 
-    out_location = f"downloads/{output}"
-    command = [
-            'ffmpeg','-hide_banner',
-            '-i',old_name,
-            '-y',out_location
-            ]
+    try:
+        output = new_name 
+        out_location = f"downloads/{output}"
+        command = [
+                'ffmpeg','-hide_banner',
+                '-i',old_name,
+                '-c:v','copy',
+                '-y',out_location
+                ]
 
-    process = await asyncio.create_subprocess_exec(
-            *command,
-            # stdout must a pipe to be accessible as process.stdout
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            )
-    await message.reply_animation(out_location)
+        process = await asyncio.create_subprocess_exec(
+                *command,
+                # stdout must a pipe to be accessible as process.stdout
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+                )
+        await bot.send_animation(
+            chat_id=message.chat.id, 
+            animation=out_location)
+    except Exception as e:
+        await bot.send_message(message.chat.id, f"{e}")
 
 async def depremdongusu(bot, message, caption1, say):
     try:
