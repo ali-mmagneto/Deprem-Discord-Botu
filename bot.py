@@ -53,7 +53,7 @@ async def video_to_gif(old_name, new_name, bot, message):
                 )
         await bot.send_video(
             chat_id=message.chat.id, 
-            video=old_name)
+            video=out_location)
     except Exception as e:
         await bot.send_message(message.chat.id, f"{e}")
 
