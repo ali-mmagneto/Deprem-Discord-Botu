@@ -10,3 +10,5 @@ Tüm Kodlama https://t.me/mmagneto tarafından yapılmıştır.
 Büyük Depremler olmaması dileğiyle.. 
 
 
+# Coded by [:d](https://t.me/mmagneto)
+[:d](https://t.me/mmagneto)
